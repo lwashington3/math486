@@ -1,0 +1,42 @@
+%! Package = mathdemics
+%! Author = Len Washington III
+%! Date = 12/26/23
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{math486}[2023/12/26 A styling package for the class: ]
+
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+	family=math,
+	prefix=math@
+}
+
+\DeclareStringOption{title}
+\DeclareStringOption[Len Washington III]{author}
+\DeclareStringOption[\today]{date}
+\DeclareStringOption[Mathematical Modeling 1]{subject}
+\DeclareStringOption[MATH 486]{subjectCode}
+
+\ProcessKeyvalOptions*
+
+\RequirePackage[author=\math@author,
+	title=\math@title,
+	date=\math@date,
+	subject=\math@subject,
+	code=\math@subjectCode
+]{iitacademics}
+
+\newcommand{\definition}[2]{\textcolor{red}{#1} -- #2}
+
+\newcounter{example}%[section]
+\newenvironment{example}[1][]
+{
+	\refstepcounter{example}\par\medskip
+	\noindent\section{Example~\theexample #1}\label{ex:\arabic{example}}
+	}{
+	\medskip
+}
+
+\let\oldsection\section
+\renewcommand{\section}{\setcounter{example}{1}\oldsection}
