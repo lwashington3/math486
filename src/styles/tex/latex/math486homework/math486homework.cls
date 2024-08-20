@@ -26,9 +26,9 @@
 ]{math486}
 
 \renewcommand{\maketitle}{%
-		\begin{center}\textbf{\title}
-		\end{center}\\
-	\textbf{Fall 2024\hfill\math@author}\\
+	\begin{center}\textbf{\title}\end{center}
+	\textbf{Fall 2024\hfill\math@author}
+	\vspace{0.5em}
 }
 
 \RequirePackage{enumitem}
@@ -37,6 +37,9 @@
 {label=\textbf{\arabic{problemsi}.},
 	leftmargin=15pt,
 }
+
+\RequirePackage{alphalph}
+\newcommand*\makeAlph[1]{\alphalph{\the\numexpr\value{#1}+1}}
 
 \setlist[problems, 2]
 {label=\textbf{(\alph{problemsii})},
@@ -53,5 +56,10 @@
 \newcommand{\subproblem}{%
 	\pdfbookmark[4]% Level
 	{Problem \the\numexpr\value{problemsi}\makeAlph{problemsii}}% Text
-	{prb:\the\numexpr\value{chapter}.\the\numexpr\value{section}.\number\value{problemsi}\makeAlph{problemsii}}% Name/Label
+	{prb:\mathhomework@number.\number\value{problemsi}\makeAlph{problemsii}}% Name/Label
 	\item\label{prb:\number\value{problemsi}\alph{problemsii}}}
+
+\newcommand{\answerfile}{homework\mathhomework@number_answers}
+\newcommand{\addanswer}[1]{% Input the section name
+\begin{answer}\ExecuteMetaData[\answerfile]{#1}\end{answer}
+}
