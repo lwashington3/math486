@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="August 19, 2024 Notes" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="August Notes">
+  <configuration default="false" name="Homework 1: Review of Matrices" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Homework">
     <texify>
       <compiler>PDFLATEX</compiler>
       <compiler-path />
@@ -9,9 +9,9 @@
       <compiler-arguments />
       <envs />
       <before-run-command />
-      <main-file>$PROJECT_DIR$/src/notes/08-19-2024.tex</main-file>
-      <output-path>$PROJECT_DIR$/out/notes</output-path>
-      <auxil-path>$PROJECT_DIR$/auxil/notes</auxil-path>
+      <main-file>$PROJECT_DIR$/src/homework/homework1.tex</main-file>
+      <output-path>$PROJECT_DIR$/out/homework</output-path>
+      <auxil-path>$PROJECT_DIR$/auxil/homework</auxil-path>
       <compile-twice>true</compile-twice>
       <output-format>PDF</output-format>
       <latex-distribution>MIKTEX</latex-distribution>
