@@ -39,6 +39,7 @@
 }
 
 \RequirePackage{alphalph}
+\RequirePackage{bookmark}
 \newcommand*\makeAlph[1]{\alphalph{\the\numexpr\value{#1}+1}}
 
 \setlist[problems, 2]
