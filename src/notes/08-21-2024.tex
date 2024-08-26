@@ -1,0 +1,203 @@
+%! Author = Len Washington III
+%! Date = 8/21/24
+
+% Preamble
+\documentclass[
+	date={August 21{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\begin{example}
+	\[ y'' + 2y' + y = 5 \]
+	Assume $y=e^{mx}$
+	\begin{equation*}
+	\begin{aligned}
+		e^{mx} + 2e^{mx} + e^{mx} &= 5\\
+		m^{2}e^{mx} + 2me^{mx} + e^{mx} &= 5\\
+		m^{2}e^{mx} + 2me^{mx} + e^{mx} &= 5\\
+	\end{aligned}
+	\end{equation*}
+
+	Find the auxiliary function:
+	\[ y'' + 2y' + y = 0 \]
+	\begin{equation*}
+		\begin{aligned}
+			m^{2}e^{mx} + 2me^{mx} + e^{mx} &= 0\\
+			e^{mx}\left(m^{2} + 2m + 1\right) &= 0\\
+			m^{2} + 2m + 1 &= \frac{0}{e^{mx}}\\
+			m^{2} + 2m + 1 &= 0\\
+			(m+1)^{2} &= 0\\
+		\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		m_{1}+1 &= 0\ \ & \ \ m_{2} + 1 &= 0\\
+		m_{1} &= -1\ \ & \ \ m_{2} &= -1\\
+		y_{1} &= e^{-1x}\ \ & \ \ y_{2} &= xe^{-1x}\\
+		y_{1} &= e^{-x}\ \ & \ \ y_{2} &= xe^{-x}\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\begin{example}
+	\begin{equation*}
+	\begin{aligned}
+		x_{1} - 2x_{2} &= 4\\
+		\dots&
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{Parameter estimation}\label{sec:parameter-estimation}
+\[ \mbox{Data: } (x_{i}, y_{x})^{N}_{i=1} \]
+
+Estimate $c_{1}, c_{2}$ in the equation of a line $c_{1} + c_{2}x = y$.
+2 unknowns and $N$ data points.
+Use points.
+\[ c_{1} + c_{2}x_{i} = y_{i};\ i = 1\dots{}N \]
+Matrix formulation:
+\[ \left[ \begin{array}{cc}
+	1 & x_{1}\\
+	1 & x_{2}\\
+	\vdots & \vdots\\
+	1 & x_{n}\\
+\end{array} \right] \]
+
+\begin{example}
+	\begin{equation*}
+	\begin{aligned}
+		[A | b] &= \left[ \begin{array}{ccc|c}
+			1 & 2 & 1 & 1\\
+			2 & 4 & 2 & 2\\
+		\end{array} \right]\\
+	&= (r_{2} \gets r_{2} - 2r_{1})\left[ \begin{array}{ccc|c}
+			1 & 2 & 1 & 1\\
+			0 & 0 & 0 & 0\\
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	$x_{1}$ is a lead variable, $x_{2}$ and $x_{3}$ are free variables.
+	Assume $x_{2}=b$ and $x_{3}=a$.
+	\begin{equation*}
+	\begin{aligned}
+		x_{3} &= a\\
+		x_{2} &= b\\
+		x_{1} &= 1 - 2b - a\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\vec{x} &= \left[ \begin{array}{c}
+			1 - 2b - a\\
+			b\\
+			a\\
+		\end{array} \right]\\
+		&= \left[ \begin{array}{c}
+			1\\
+			0\\
+			0\\
+		\end{array} \right] + a\left[ \begin{array}{c}
+			-1\\
+			0\\
+			1\\
+		\end{array} \right] + b\left[ \begin{array}{c}
+			-2\\
+			1\\
+			0\\
+		\end{array} \right]\\
+	\end{aligned}
+	\end{equation*}
+	\[ N(A) = \mbox{null space/kernel} = \left\{ \left[ \begin{array}{c}
+		-1\\
+		0\\
+		1\\
+	\end{array} \right], \left[ \begin{array}{c}
+		-2\\
+		1\\
+		0\\
+	\end{array} \right] \right\} \]
+
+	\textbf{Note: The particular solution $\left[ \begin{array}{c}
+		1\\
+		0\\
+		0\\
+	\end{array} \right]$ is not unique}
+\end{example}
+
+\definition{rank($A$)}{\# of independent rows.}
+$\Call{Rank}{A} + \Call{Dim}{N(A)} = $ \# of columns
+
+\section{Dimensional Analysis}\label{sec:dimensional-analysis}
+3 Aspects
+\begin{enumerate}[label=(\arabic*)]
+	\item \definition{Dimensional reduction}{develop functional laws w/ reduced number of variables and parameters}
+	\item Determine invariance
+	\item Scaling or non-dimensionalize equations (important for computing)
+\end{enumerate}
+
+\subsection{Key Idea}\label{subsec:key-idea}
+Any ``physical'' quantity can be described in terms of fundamental properties such as mass, length, time, temperature, current, ``price'', etc.
+These properties are called \textbf{dimensions} or \textbf{fundamental dimensions.}
+
+\subsection{Scale Units}\label{subsec:scale-units}
+\definition{Scale Units}{assign a number to the dimension - number depends on units}
+
+\subsubsection{Mass Dimension $M$}\label{subsubsec:mass-dimension-$m$}
+Units:
+\begin{description}
+	\item[CGS] grain
+	\item[MKS] kilogram
+	\item[FPS] slug
+	\item[SI] kilogram
+\end{description}
+
+\subsubsection{Length Dimension $L$}\label{subsubsec:length-dimension-$l$}
+Units:
+\begin{itemize}
+	\item 1'
+	\item 12''
+	\item 0.3048m
+	\item 30.48cm
+	\item 0.000189 miles
+	\item $3.048\times10^{8}$ nanometers
+\end{itemize}
+
+\noindent Dimensions are independent of scale units.
+
+\noindent \definition{Fundamental Dimensions}{the basic or primary building blocks of other physical quantities (secondary or derived) within the same system.}
+
+\begin{table}[H]
+	\centering
+	\caption{Dimensions}
+	\label{tab:dimensions}
+	\begin{tabular}{lcl}
+		\textbf{Dimension} & \textbf{Symbol} & \textbf{SI Unit}\\
+		Mass & M & kg\\
+		Length & L & m (meter)\\
+		Time & T & s (sec)\\
+		Temperature & $\theta$ & K (kelvin)\\
+		Current & I & A (ampere)\\
+		Light & C & cd (candela)
+	\end{tabular}
+\end{table}
+
+Derived Quantities:
+\begin{equation}
+	[\mbox{force}] = M\frac{L}{T^{2}}\label{eq:force-quantity}
+\end{equation}
+
+\subsection{Laws}\label{subsec:laws}
+\begin{itemize}
+	\item Physical Laws must be independent of scale eunits (must hole for \emph{any} unit)
+	\item A quantity $Y$ is \emph{dimensionless} if $[Y]=1=M^{0}L^{0}T^{0}$
+\end{itemize}
+
+\begin{example}[{What is $[\theta]$ if $\theta$ is in radians?}]
+	$[\theta]=1$ because degrees measured in radians are $\theta=\frac{s}{r}$.
+	The units for both $s$ and $r$ is L ($[s]=L, [r]=L$).
+	\[ [\theta] = \left[ \frac{s}{r} \right] = \frac{L}{L} = 1 \]
+\end{example}
+
+\end{document}

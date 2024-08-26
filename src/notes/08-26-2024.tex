@@ -1,0 +1,245 @@
+%! Author = Len Washington III
+%! Date = 8/26/24
+
+% Preamble
+\documentclass[
+	date={August 26{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\begin{example}[Pendulum]
+	$\phi(t)$ = angular displacement.\\
+	$\phi(0)$ = $\theta$ = initial angular displacement.\\
+	Let $t_{\phi} = $ period of the pendulum (time for 1 complete cycle)
+
+	\textbf{What factors determine $\mathbf{t_{\phi}}$} ($[t_{\phi} = T]$)?
+	\begin{enumerate}
+		\item $g$
+		\begin{itemize}
+			\item $[g] = LT^{-2}$
+		\end{itemize}
+		\item $m$ -- mass
+		\begin{itemize}
+			\item $[m] = M$
+		\end{itemize}
+		\item $r$ -- length
+		\begin{itemize}
+			\item $[r] = L$
+		\end{itemize}
+		\item $\theta$ = initial displacement
+		\begin{itemize}
+			\item $[\theta] = 1$
+		\end{itemize}
+		\item air resistance (drag)
+		\item friction in hinge
+	\end{enumerate}
+
+	Assume $t_{\phi} = f(m, g, r, \theta)$
+	Dimension reduction:
+	\begin{equation*}
+	\begin{aligned}
+		[t_{\phi}] &= [m^{a}g^{b}r^{c}\theta^{d}]\\
+		[t_{\phi}] &= [m]^{a}[g]^{b}[r]^{c}[\theta]^{d}\\
+		M^{0}L^{0}T^{1} &= M^{a}\left( LT^{2} \right)^{b} L^{c} \left( M^{0}L^{0}T^{0} \right)^{d}\\
+						&= M^{a}L^{b}T^{2b}L^{c} M^{0d}L^{0d}T^{0d}\\
+						&= M^{a}L^{b}T^{2b}L^{c} (1)\\
+						&= M^{a}L^{b+c}T^{2b}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{cccc}
+			 1 & 0 & 0 & 0\\
+			 0 & 1 & 1 & 0\\
+			0 & -2 & 0 & 0\\
+		\end{array} \right]\left[ \begin{array}{c}
+			a\\
+			b\\
+			c\\
+			d\\
+		\end{array} \right] = \left[ \begin{array}{c}
+			0\\
+			0\\
+			1\\
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{cccc|c}
+			1 &  0 & 0 & 0 & 0\\
+			0 &  1 & 1 & 0 & 0\\
+			0 & -2 & 0 & 0 & 1\\
+		\end{array} \right]
+		&= \left( r_{2} \gets 2r_{2} + r_{3} \right)\left[ \begin{array}{cccc|c}
+			1 &  0 & 0 & 0 & 0\\
+			0 &  0 & 2 & 0 & 0\\
+			0 & -2 & 0 & 0 & 1\\
+		\end{array} \right]\\
+		&= \left( r_{2} \leftrightarrow r_{3} \right)\left[ \begin{array}{cccc|c}
+			1 &  0 & 0 & 0 & 0\\
+			0 & -2 & 0 & 0 & 1\\
+			0 &  0 & 2 & 0 & 0\\
+		\end{array} \right]\\
+		&= \left( r_{2} \gets -\frac{r_{2}}{2} \right)\left[ \begin{array}{cccc|c}
+			1 & 0 & 0 & 0 & 0\\
+			0 & 1 & 0 & 0 & -\frac{1}{2}\\
+			0 & 0 & 2 & 0 & 0\\
+		\end{array} \right]\\
+		&= \left( r_{3} \gets \frac{r_{3}}{2} \right)\left[ \begin{array}{cccc|c}
+			1 & 0 & 0 & 0 & 0\\
+			0 & 1 & 0 & 0 & -\frac{1}{2}\\
+			0 & 0 & 1 & 0 & 0\\
+		\end{array} \right]\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		a &= 0 \sep b &= -\frac{1}{2} \sep c &= 0 \sep d &= k\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		t_{\phi} &= m^{0}g^{-\frac{1}{2}}r^{c}\theta^{d}
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{Buckingham's Pi Theorem}\label{sec:buckingham's-pi-theorem}
+Let $q=$ physical quantity (measurable).
+$q$ depends on $n$ parameters $p_{1},\dots,p_{n}$
+\[ q = f(p_{1},p_{2},\dots,p_{n}) \]
+
+Assume fundamental dimensions $h, T, M$.
+\begin{equation*}
+\begin{aligned}
+	[q] &= L^{l_{0}}T^{t_{0}}M^{m_{0}}\\
+	[p_{i}] &= L^{l_{i}}T^{t_{i}}M^{m_{i}}\\
+	[q] &= [p_{1}]^{a_{1}}[p_{2}]^{a_{2}}\dots[p_{n}]^{a_{n}}
+\end{aligned}
+\end{equation*}
+Objective: find $a_{j}$ where $j=1,2,\dots,n$
+
+\begin{equation*}
+\begin{aligned}
+	L^{l_{0}}T^{t_{0}}M^{m_{0}} &= \left( L^{l_{1}}T^{t_{1}}M^{m_{1}} \right)^{a_{1}}\times\left( L^{l_{2}}T^{t_{2}}M^{m_{2}} \right)^{a_{2}}\times\dots\times\left( L^{l_{n}}T^{t_{n}}M^{m_{n}} \right)^{a_{n}}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+	L: l_{0} &=
+\end{aligned}
+\end{equation*}
+
+\[ A\vec{x} = \vec{b} \mbox{ has a solution of form}\]
+\begin{equation*}
+\begin{aligned}
+	\vec{x} = \vec{x_{\phi}} + \gamma_{1}\vec{x_{1}} + \gamma_{2}\vec{x_{2}} + \dots + \gamma_{n}\vec{x_{n}}
+\end{aligned}
+\end{equation*}
+where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\{ \vec{x_{j}} \}$ is the null space of $A$.
+
+\begin{example}
+	Drag on a sphere within a fluid.
+	The sphere has radius $R$ moving at velocity $v$ with a resistant drag force $D_{F}$.
+	What factors play a role?
+	\begin{description}
+		\item[$R=$] radius $[L]$
+		\item[$v=$] velocity $[LT^{-1}]$
+		\item[$\rho=$] density $[ML^{-3}]$
+		\item[$\mu=$] dynamic viscosity $[ML^{-1}T^{-1}]$
+	\end{description}
+	\begin{equation*}
+	\begin{aligned}
+		D_{F} &= f(R, v, \rho, \mu)\\
+		[D_{F}] &= [R]^{a}[v]^{b}[\rho]^{c}[\mu]^{d}\\
+		MLT^{-2} &= L^{a}\left( LT^{-1} \right)^{b}\left( ML^{-3} \right)^{c}\left( ML^{-1}T^{-1} \right)^{d}\\
+		MLT^{-2} &= L^{a}\times L^{b}T^{-b}\times M^{c}L^{-3c} \times M^{d}L^{-d}T^{-d}\\
+		MLT^{-2} &= M^{c+d}L^{a+b-3c-d}T^{-b-d}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{rrrr}
+			1 & 1 & -3 & -1\\
+			0 & -1 & 0 & -1\\
+			0 & 0 & 1 & 1\\
+		\end{array} \right]\left[ \begin{array}{c}
+			a\\
+			b\\
+			c\\
+			d\\
+		\end{array} \right] = \left[ \begin{array}{r}
+			1\\
+			-2\\
+			1\\
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{rrrr|r}
+			1 & 1 & -3 & -1 & 1\\
+			0 & -1 & 0 & -1 & -2\\
+			0 & 0 & 1 & 1 & 1\\
+		\end{array} \right]
+		&= \left( r_{2} \gets -r_{2} \right) \left[ \begin{array}{rrrr|r}
+			1 & 1 & -3 & -1 & 1\\
+			0 & 1 & 0 & 1 & 2\\
+			0 & 0 & 1 & 1 & 1\\
+		\end{array} \right]\\
+		&= \left( r_{1} \gets r_{1} - r_{2} \right) \left[ \begin{array}{rrrr|r}
+			1 & 0 & -3 & -2 & 0\\
+			0 & 1 & 0 & 1 & 2\\
+			0 & 0 & 1 & 1 & 1\\
+		\end{array} \right]\\
+		&= \left( r_{1} \gets r_{1} + 3r_{3} \right) \left[ \begin{array}{rrrr|r}
+			1 & 0 & 0 & 1 & 0\\
+			0 & 1 & 0 & 1 & 2\\
+			0 & 0 & 1 & 1 & 1\\
+		\end{array} \right]\\
+		\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		a + d &= 0 \sep b + d &= 2 \sep c + d &= 1\\
+		a &= -d \sep b &= -d + 2 \sep c &= -d + 1\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\begin{example}[T-Rex Top Speed]
+	How fast can a Tyrannosaurus Rex (T-Rex) walk or run?\\
+	Develop a model!\\
+	Find $v=$ velocity $[v] = \left[ \frac{L}{T} \right]$\\
+	What variables are important?
+	\begin{description}
+		\item[$m$] mass, $[M]$
+		\item[$g$] gravity, $[LT^{-2}]$
+		\item[$h$] hip length, [$L$]
+		\item[$s$] stride length -- distance between 2 steps, $[s]=L$
+	\end{description}
+	\[ v = f(s, h, g, m) \]
+	\begin{equation*}
+	\begin{aligned}
+		[v] &= [s^{a}h^{b}g^{c}m^{d}]\\
+		LT^{-1} &= L^{a}L^{b}\left( LT^{-2} \right)^{c}M^{d}\\
+		LT^{-1} &= L^{a+b}L^{c}T^{-2c}M^{d}\\
+		LT^{-1} &= L^{a+b+c}T^{-2c}M^{d}\\
+	\end{aligned}
+	\end{equation*}
+	Equate exponents:
+	\begin{equation*}
+	\begin{aligned}
+		L:&& 1 &= a + b + c\\
+		T{:}&& -1 &= -2c\\
+		M:&& 0 &= d\\
+	\end{aligned}
+	\end{equation*}
+
+\end{example}
+
+\end{document}

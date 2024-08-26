@@ -1,6 +1,5 @@
 auxil
-out/**run.xml
-.fuse_hidden*
+out/**.run.xml
 
 ### TeX template
 ## Core latex/pdflatex auxiliary files:
