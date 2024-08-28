@@ -1,0 +1,111 @@
+%! Author = Len Washington III
+%! Date = 8/28/24
+
+% Preamble
+\documentclass[
+	date={August 28{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+$R_{e}$ small -- laminar flow.\\
+$R_{e}$ large -- turbulent flow.
+
+\section{Why is $R_{e}$ useful}\label{sec:why-is-reynolds-useful}
+Prototyping ($p$) using a model ($m$)
+\begin{enumerate}
+	\item Geometric similarity
+	\item Kinematic or dynamic similarity
+\end{enumerate}
+
+Assuming
+\begin{enumerate}
+	\item materials are the same
+	\item both in the same medium
+\end{enumerate}
+then
+\begin{equation*}
+\begin{aligned}
+	\rho_{p} &= \rho_{m}\\
+	\mu_{p} &= \mu_{m}\\
+	R_{e_{p}} &= R_{e_{m}}\\
+	\frac{R_{m}v_{m}\rho_{m}}{\mu_{m}} &= \frac{R_{p}v_{p}\rho_{p}}{\mu_{m}}\\
+	v_{m} &= \frac{R_{p}v_{p}\rho_{p}\mu_{m}}{\mu_{m}R_{m}\rho_{m}}\\
+		  &= \frac{\rho_{p}}{\rho_{m}}\times\frac{\mu_{p}}{\mu_{m}}\times\frac{R_{p}v_{p}}{R_{m}}\\
+		  &= \frac{R_{p}}{R_{m}}v_{p}\\
+\end{aligned}
+\end{equation*}
+
+\setcounter{chapter}{1}
+\chapter{Scaling and Nondimensionality}\label{ch:scaling-and-nondimensionality}
+
+\[ \frac{dP}{dt} = rP\left( 1 - \frac{P}{k} \right), \ \ p(0)=p_{0} \]
+
+\begin{equation*}
+\begin{aligned}
+	p &= f(t, r, k, p_{0})
+\end{aligned}
+\end{equation*}
+
+\begin{itemize}
+	\item $[p] = \#$
+	\item $[t] = T$
+	\item $[p_{0}] = \#$
+\end{itemize}
+
+\[ \frac{dP}{dt} = rP - \frac{rP^{2}}{k} \]
+\begin{itemize}
+	\item $\left[ \frac{dP}{dt} = \frac{\#}{T} \right]$
+	\item $[rP] = [r][P] = $
+\end{itemize}
+
+\begin{equation*}
+\begin{aligned}
+	p &= f(t, r, k, p_{0})\\
+	[p] &= [t]^{a}[r]^{b}[k]^{c}[p_{0}]^{d}\\
+	T^{0}\# &= T^{a}(T^{-1})^{b}\#^{c}\#^{d}\\
+	T^{0}\# &= T^{a}T^{-b}\#^{c}\#^{d}\\
+	T^{0}\# &= T^{a-b}\#^{c+d}\\
+\end{aligned}
+\end{equation*}
+
+\chapter{Chemical Diffusion}\label{ch:chemical-diffusion}
+\begin{center}
+	Molecules or particles in a fluid
+\end{center}
+
+We do not want to track number -- to large!
+Measure concentration instead of number.\\
+
+3 Dimensional $[concentration] = \frac{M}{Volume} = \frac{M}{L^{3}}$
+
+Flux $J(x,t)$ = the amount of substance that passes through $x$ in the positive direction per unit time. (If flow goes to the left: $J < 0$)\\
+
+rate of change of amount:
+\begin{equation}
+	\frac{d}{dt}\int_{a}^{b} c(x,t)dx = J(a,t) - J(b,t)
+	\label{eq:flux}
+\end{equation}
+
+\begin{equation}
+	\int_{a}^{b} \frac{\partial c}{\partial t} dx = -\int_{a}^{b} \frac{\partial J}{\partial x} dx
+	\label{eq:what-the-flux}
+\end{equation}
+
+\begin{equation}
+	\int_{a}^{b} \left( \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x}\right) dx = 0
+	\label{eq:flux2}
+\end{equation}
+
+What is the flux -- $J$?
+\definition{Chemical diffusion}{how does the flow depend on the concentration?}
+
+Chemical moves from region of high concentration to low concentration.
+
+\begin{equation}
+	J \propto -\frac{\partial c}{\partial x}
+	\label{eq:Ficks-Law}
+\end{equation}
+
+\end{document}

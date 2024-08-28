@@ -24,6 +24,8 @@
 	date={\mathnotes@date}
 ]{math486}
 
+%\setlength{\indent}{0in}
+
 \RequirePackage{titlesec}
 \titleformat{\section}
 {\bfseries}
