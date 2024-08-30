@@ -12,9 +12,9 @@
 \begin{example}[Pendulum]
 	$\phi(t)$ = angular displacement.\\
 	$\phi(0)$ = $\theta$ = initial angular displacement.\\
-	Let $t_{\phi} = $ period of the pendulum (time for 1 complete cycle)
+	Let $t_{p} = $ period of the pendulum (time for 1 complete cycle)
 
-	\textbf{What factors determine $\mathbf{t_{\phi}}$} ($[t_{\phi} = T]$)?
+	\textbf{What factors determine $\mathbf{t_{p}}$} ($[t_{p}] = T$)?
 	\begin{enumerate}
 		\item $g$
 		\begin{itemize}
@@ -36,12 +36,12 @@
 		\item friction in hinge
 	\end{enumerate}
 
-	Assume $t_{\phi} = f(m, g, r, \theta)$
+	Assume $t_{p} = f(m, g, r, \theta)$
 	Dimension reduction:
 	\begin{equation*}
 	\begin{aligned}
-		[t_{\phi}] &= [m^{a}g^{b}r^{c}\theta^{d}]\\
-		[t_{\phi}] &= [m]^{a}[g]^{b}[r]^{c}[\theta]^{d}\\
+		[t_{p}] &= [m^{a}g^{b}r^{c}\theta^{d}]\\
+		[t_{p}] &= [m]^{a}[g]^{b}[r]^{c}[\theta]^{d}\\
 		M^{0}L^{0}T^{1} &= M^{a}\left( LT^{2} \right)^{b} L^{c} \left( M^{0}L^{0}T^{0} \right)^{d}\\
 						&= M^{a}L^{b}T^{2b}L^{c} M^{0d}L^{0d}T^{0d}\\
 						&= M^{a}L^{b}T^{2b}L^{c} (1)\\
@@ -75,41 +75,185 @@
 		\end{array} \right]
 		&= \left( r_{2} \gets 2r_{2} + r_{3} \right)\left[ \begin{array}{cccc|c}
 			1 &  0 & 0 & 0 & 0\\
-			0 &  0 & 2 & 0 & 0\\
+			0 &  0 & 2 & 0 & 1\\
 			0 & -2 & 0 & 0 & 1\\
 		\end{array} \right]\\
 		&= \left( r_{2} \leftrightarrow r_{3} \right)\left[ \begin{array}{cccc|c}
 			1 &  0 & 0 & 0 & 0\\
 			0 & -2 & 0 & 0 & 1\\
-			0 &  0 & 2 & 0 & 0\\
+			0 &  0 & 2 & 0 & 1\\
 		\end{array} \right]\\
 		&= \left( r_{2} \gets -\frac{r_{2}}{2} \right)\left[ \begin{array}{cccc|c}
 			1 & 0 & 0 & 0 & 0\\
 			0 & 1 & 0 & 0 & -\frac{1}{2}\\
-			0 & 0 & 2 & 0 & 0\\
+			0 & 0 & 2 & 0 & 1\\
 		\end{array} \right]\\
 		&= \left( r_{3} \gets \frac{r_{3}}{2} \right)\left[ \begin{array}{cccc|c}
 			1 & 0 & 0 & 0 & 0\\
 			0 & 1 & 0 & 0 & -\frac{1}{2}\\
-			0 & 0 & 1 & 0 & 0\\
+			0 & 0 & 1 & 0 & \frac{1}{2}\\
 		\end{array} \right]\\
 	\end{aligned}
 	\end{equation*}
 	\begin{equation*}
 	\begin{aligned}
-		a &= 0 \sep b &= -\frac{1}{2} \sep c &= 0 \sep d &= k\\
+		a &= 0 \sep b &= -\frac{1}{2} \sep c &= \frac{1}{2} \sep d &= \mbox{arbitrary constant}\\
 	\end{aligned}
 	\end{equation*}
 	\begin{equation*}
 	\begin{aligned}
-		t_{\phi} &= m^{0}g^{-\frac{1}{2}}r^{c}\theta^{d}
+		\left[ \begin{array}{c}
+			a\\
+			b\\
+			c\\
+			d\\
+		\end{array} \right] &= \left[ \begin{array}{c}
+			0\\
+			-\frac{1}{2}\\
+			\frac{1}{2}\\
+			d\\
+		\end{array} \right]\\ &= \left[ \begin{array}{c}
+			0\\
+			-\frac{1}{2}\\
+			\frac{1}{2}\\
+			0\\
+		\end{array} \right]
+		+& d\left[ \begin{array}{c}
+			0\\
+			0\\
+			0\\
+			1\\
+		\end{array} \right]\\
+		&= g^{-\frac{1}{2}}r^{\frac{1}{2}} +& \theta^{1}\\
+		&= \sqrt{g^{-1}r} + \theta\\
+		&= \sqrt{\frac{r}{g}} + \theta\\
 	\end{aligned}
 	\end{equation*}
+	Note the dimensions:
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \sqrt{\frac{r}{g}} \right] &= \sqrt{\frac{[r]}{[g]}}\\
+										  &= \sqrt{\frac{L}{LT^{-2}}}\\
+										  &= \sqrt{\frac{1}{T^{-2}}}\\
+										  &= \sqrt{T^{2}}\\
+										  &= T\\
+		[\theta] &= 1\\
+		\mbox{nullspace} = \left\{ \left[ \begin{array}{c}
+			0\\
+			0\\
+			0\\
+			1\\
+		\end{array} \right] \right\} &\Rightarrow \mbox{non-dimensional quantity!}
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		t_{p} &= \alpha\sqrt{\frac{r}{g}}\theta^{d}
+	\end{aligned}
+	\end{equation*}
+	where $\alpha$ is a non-dimensional constant ($[\alpha] = 1$)
+	\[ t_{p} = \sqrt{\frac{r}{g}}\left[ \alpha, d_{1}\theta^{d} + d_{2}\theta^{d} + d_{3}\theta^{d} + \dots \right] \]
+	where all the terms within the brackets can be defined as $h(\theta)$ (and the $\alpha$'s are hidden in $h(\theta)$ as well).
+	So:
+	\[ t_{p} = \sqrt{\frac{r}{g}}h(\theta) \]
+	where $h(\theta)$ can be found using data.
+	The completely dimensionless form would be:
+	\[ \frac{t_{p}}{\sqrt{\frac{r}{g}}} = h(\theta) \]
+\end{example}
+
+\begin{example}[Pendulum ODE]
+	Derivation of ODE describing motion.\\
+
+	Newton's 2nd Law - rotational form
+	\begin{description}
+		\item[$\tau$] = torque (force)
+		\begin{itemize}
+			\item $[\tau] = \frac{ML}{T^{2}}$
+		\end{itemize}
+		\item[$I$] = moment of inertia (like mass; measures how difficult it is to change the rotational force)
+		\item[$\alpha$] = angular acceleration (a)
+		\begin{itemize}
+			\item $\frac{1}{T^{2}}$
+		\end{itemize}
+	\end{description}
+	\[ \alpha = \frac{\tau}{I} \mbox{  or  } \tau = I\alpha \]
+	What is the dimension for $I$?
+	\begin{equation*}
+	\begin{aligned}
+		[\tau] &= [I\alpha]\\
+			   &= [I][\alpha]\\
+		\frac{ML^{2}}{T^{2}} &= [I]\frac{1}{T^{2}}\\
+		ML^{2} &= [I]
+	\end{aligned}
+	\end{equation*}
+	In physics, $I=$ mass $\times$ square of the distance from axis $=mr^{2}$
+
+	\begin{equation*}
+	\begin{aligned}
+		\tau &= I\frac{d^{2}\psi}{dt^{2}}\\
+			 &= \vec{r}\times\vec{f}\\
+			 &= -mgr\sin(\psi)\\
+		I\frac{d^{2}\psi}{dt^{2}} &= -mgr\sin(\psi)\\
+		mr^{2}\frac{d^{2}\psi}{dt^{2}} &= -mgr\sin(\psi)\\
+		r\frac{d^{2}\psi}{dt^{2}} &= -g\sin(\psi)\\
+		r\frac{d^{2}\psi}{dt^{2}} + g\sin(\psi) &= 0\\
+		\frac{d^{2}\psi}{dt^{2}} + \frac{g}{r}\sin(\psi) &= 0\\
+	\end{aligned}
+	\end{equation*}
+	Assuming that $\theta$ is small, $\sin(\psi)\approx\psi$.
+	\[ \frac{d^{2}\psi}{dt^{2}} + \frac{g}{r}\psi = 0,\ \ \ \psi(0) = \theta,\ \ \ \psi'(0) = 0 \]
+	Since this is a 2nd order, homogenous function, we can assume $\psi=e^{\lambda t}$
+	\begin{equation*}
+	\begin{aligned}
+		0 &= \lambda^{2}e^{\lambda t} + \frac{g}{r}e^{\lambda t}\\
+		  &= e^{\lambda t}\left( \lambda^{2} + \frac{g}{r} \right)\\
+		  &= \lambda^{2} + \frac{g}{r}\\
+		-\lambda^{2} &= \frac{g}{r}\\
+		\lambda^{2} &= -\frac{g}{r}\\
+		\lambda &= \pm\sqrt{-\frac{g}{r}}\\
+				&= \pm\sqrt{\frac{g}{r}}\times\sqrt{-1}\\
+				&= \pm\sqrt{\frac{g}{r}}i\\
+	\end{aligned}
+	\end{equation*}
+	\[ \mbox{The fundamental set is } \left\{ e^{i\sqrt{\frac{g}{r}}t}, e^{-i\sqrt{\frac{g}{r}}t} \right\} \]
+	Their real form (from ODE course) is
+	\begin{equation}
+		\psi = c_{1}\cos\left( \sqrt{\frac{g}{r}}t \right) + c_{2}\sin\left( \sqrt{\frac{g}{r}}t \right)
+		\label{eq:real}
+	\end{equation}
+	$c_{1}$ and $c_{2}$ can be found using the initial conditions $\psi(0) = \theta$ and $\psi'(0) = 0$.
+	\begin{equation*}
+	\begin{aligned}
+		\psi(0) &= c_{1}\cos\left( \sqrt{\frac{g}{r}}(0) \right) + c_{2}\sin\left( \sqrt{\frac{g}{r}}(0) \right)\\
+		\theta &= c_{1}\cos\left( 0 \right) + c_{2}\sin\left( 0 \right)\\
+		\theta &= c_{1}(1) + c_{2}(0)\\
+		\theta &= c_{1}\\
+		c_{1} &= \theta\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\psi'(t) &= -\sqrt{\frac{g}{r}}c_{1}\sin\left( \sqrt{\frac{g}{r}}t \right) + \sqrt{\frac{g}{r}}c_{2}\cos\left( \sqrt{\frac{g}{r}}t \right)\\
+		\psi'(0) &= -\sqrt{\frac{g}{r}}c_{1}\sin\left( \sqrt{\frac{g}{r}}(0) \right) + \sqrt{\frac{g}{r}}c_{2}\cos\left( \sqrt{\frac{g}{r}}(0) \right)\\
+		0 &= -\sqrt{\frac{g}{r}}c_{1}\sin(0) + \sqrt{\frac{g}{r}}c_{2}\cos(0)\\
+		0 &= -\sqrt{\frac{g}{r}}c_{1}(0) + \sqrt{\frac{g}{r}}c_{2}(1)\\
+		0 &= \sqrt{\frac{g}{r}}c_{2}\\
+		0 &= c_{2}\\
+		c_{2} &= 0\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\psi &= c_{1}\cos\left( \sqrt{\frac{g}{r}}t \right) + c_{2}\sin\left( \sqrt{\frac{g}{r}}t \right)\\
+		\psi &= \theta\cos\left( \sqrt{\frac{g}{r}}t \right) + 0\sin\left( \sqrt{\frac{g}{r}}t \right)\\
+		\psi &= \theta\cos\left( \sqrt{\frac{g}{r}}t \right)
+	\end{aligned}
+	\end{equation*} % TODO: Find out where 2\pi comes from
 \end{example}
 
 \section{Buckingham's Pi Theorem}\label{sec:buckingham's-pi-theorem}
 Let $q=$ physical quantity (measurable).
-$q$ depends on $n$ parameters $p_{1},\dots,p_{n}$
+$q$ depends on $n$ parameters and variables $p_{1},\dots,p_{n}$
 \[ q = f(p_{1},p_{2},\dots,p_{n}) \]
 
 Assume fundamental dimensions $h, T, M$.
@@ -127,22 +271,58 @@ Objective: find $a_{j}$ where $j=1,2,\dots,n$
 	L^{l_{0}}T^{t_{0}}M^{m_{0}} &= \left( L^{l_{1}}T^{t_{1}}M^{m_{1}} \right)^{a_{1}}\times\left( L^{l_{2}}T^{t_{2}}M^{m_{2}} \right)^{a_{2}}\times\dots\times\left( L^{l_{n}}T^{t_{n}}M^{m_{n}} \right)^{a_{n}}
 \end{aligned}
 \end{equation*}
-
+Equate exponents!
 \begin{equation*}
 \begin{aligned}
-	L: l_{0} &=
+	L: l_{0} &= l_{1}a_{1} + l_{2}a_{2} + \dots + l_{n}a_{n}\\
+	T: t_{0} &= t_{1}a_{1} + t_{2}a_{2} + \dots + t_{n}a_{n}\\
+	M: m_{0} &= m_{1}a_{1} + m_{2}a_{2} + \dots + m_{n}a_{n}\\
 \end{aligned}
 \end{equation*}
+\begin{equation*}
+\begin{aligned}
+	A = \left[ \begin{array}{cccc}
+		l_{1} & l_{2} & \dots & l_{n}\\
+		t_{1} & t_{2} & \dots & t_{n}\\
+		m_{1} & m_{2} & \dots & m_{n}\\
+	\end{array} \right]_{3\times{}n}\ \ \
+	\vec{x} = \left[ \begin{array}{c}
+		a_{1}\\
+		a_{2}\\
+		\vdots\\
+		a_{n}\\
+	\end{array} \right]_{n\times1}\ \ \
+	\vec{b} = \left[ \begin{array}{c}
+		l_{0}\\
+		t_{0}\\
+		m_{0}\\
+	\end{array} \right]_{3\times1}
+\end{aligned}
+\end{equation*}
+In general, $n>3$ -- undetermined $\Rightarrow\infty$ set of solutions.
 
 \[ A\vec{x} = \vec{b} \mbox{ has a solution of form}\]
 \begin{equation*}
 \begin{aligned}
-	\vec{x} = \vec{x_{\phi}} + \gamma_{1}\vec{x_{1}} + \gamma_{2}\vec{x_{2}} + \dots + \gamma_{n}\vec{x_{n}}
+	\vec{x} = \vec{x_{p}} + \gamma_{1}\vec{x_{1}} + \gamma_{2}\vec{x_{2}} + \dots + \gamma_{k}\vec{x_{k}} % TODO: Find out where k comes from
 \end{aligned}
 \end{equation*}
-where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\{ \vec{x_{j}} \}$ is the null space of $A$.
+where $\gamma$ is arbitrary, $\vec{x_{p}}$ is the particular solution, and $\{ \vec{x_{j}} \}$ is the null space of $A$.
+\begin{itemize}
+	\item $\vec{x_{j}}$ correspond to exponents that yield dimensionless quantities
+	\[ \mbox{\textcolor{red}{defines:} } \Pi_{j}, j=1,\dots,k \]
+	\item $\vec{x_{p}}$ exponents that yield a quantity with $[q]$, call it $Q$
+\end{itemize}
+So
+\begin{equation*}
+\begin{aligned}
+	q &= QF(\Pi_{1}, \Pi_{1}, \dots, \Pi_{k})\\
+	\pi_{0} = \frac{q}{Q} &= QF(\Pi_{1}, \Pi_{1}, \dots, \Pi_{k})\\
+\end{aligned}
+\end{equation*}
+where the second equation is all in terms of dimensionless quantities
 
-\begin{example}
+\begin{example}[Drag on a sphere]
 	Drag on a sphere within a fluid.
 	The sphere has radius $R$ moving at velocity $v$ with a resistant drag force $D_{F}$.
 	What factors play a role?
@@ -192,12 +372,12 @@ where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\
 			0 & 0 & 1 & 1 & 1\\
 		\end{array} \right]\\
 		&= \left( r_{1} \gets r_{1} - r_{2} \right) \left[ \begin{array}{rrrr|r}
-			1 & 0 & -3 & -2 & 0\\
+			1 & 0 & -3 & -2 & -1\\
 			0 & 1 & 0 & 1 & 2\\
 			0 & 0 & 1 & 1 & 1\\
 		\end{array} \right]\\
 		&= \left( r_{1} \gets r_{1} + 3r_{3} \right) \left[ \begin{array}{rrrr|r}
-			1 & 0 & 0 & 1 & 0\\
+			1 & 0 & 0 & 1 & 2\\
 			0 & 1 & 0 & 1 & 2\\
 			0 & 0 & 1 & 1 & 1\\
 		\end{array} \right]\\
@@ -205,11 +385,64 @@ where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\
 	\end{equation*}
 	\begin{equation*}
 	\begin{aligned}
-		a + d &= 0 \sep b + d &= 2 \sep c + d &= 1\\
-		a &= -d \sep b &= -d + 2 \sep c &= -d + 1\\
+		a + d &= 2 \sep b + d &= 2 \sep c + d &= 1\\
+		a &= 2 - d \sep b &= -d + 2 \sep c &= -d + 1\\
 	\end{aligned}
 	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{c}
+			a\\
+			b\\
+			c\\
+			d\\
+		\end{array} \right]
+		&= \left[ \begin{array}{c}
+			2 - d\\
+			2 - d\\
+			1 - d\\
+			d\\
+		\end{array} \right]\\
+		&= \left[ \begin{array}{c}
+			2\\
+			2\\
+			1\\
+			0\\
+		\end{array} \right]
+		+ d\left[ \begin{array}{c}
+			-1\\
+			-1\\
+			-1\\
+			1\\
+		\end{array} \right]\\
+		&= R^{2}v^{2}\rho^{1} + R^{-1}v^{-1}\rho^{-1}\mu^{1}\\
+		&= R^{2}v^{2}\rho + \frac{\mu}{Rv\rho}\\
+		&= \left[ \begin{array}{c}
+			2\\
+			2\\
+			1\\
+			0\\
+		\end{array} \right]
+		+ \textcolor{red}{-d}\left[ \begin{array}{c} % TODO: Find out why we made d negative
+			1\\
+			1\\
+			1\\
+			-1\\
+		\end{array} \right]\\
+		&= R^{2}v^{2}\rho^{1} + R^{1}v^{1}\rho^{1}\mu^{-1}\\
+		&= R^{2}v^{2}\rho + \frac{Rv\rho}{\mu}\\
+	\end{aligned}
+	\end{equation*}
+	\[ D_{F} = R^{2}v^{2}\rho F\left( \frac{Rv\rho}{\mu} \right) \]
+	where $\frac{Rv\rho}{\mu}$ represents the Reynold's number $Re$
 \end{example}
+
+\section{Reynold's number}\label{sec:reynold's-number}
+\begin{equation}
+	Re = \frac{Rv\rho}{\mu} = \frac{\mbox{inertial}}{\mbox{viscous}}
+\label{eq:reynolds-number}
+\end{equation}
+When $Re$ is small, there will be laminar (smooth) flow, when $Re$ is large, the flow will be turbulent (having vortices).
 
 \begin{example}[T-Rex Top Speed]
 	How fast can a Tyrannosaurus Rex (T-Rex) walk or run?\\
@@ -228,7 +461,7 @@ where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\
 		[v] &= [s^{a}h^{b}g^{c}m^{d}]\\
 		LT^{-1} &= L^{a}L^{b}\left( LT^{-2} \right)^{c}M^{d}\\
 		LT^{-1} &= L^{a+b}L^{c}T^{-2c}M^{d}\\
-		LT^{-1} &= L^{a+b+c}T^{-2c}M^{d}\\
+		LT^{-1}M^{0} &= L^{a+b+c}T^{-2c}M^{d}\\
 	\end{aligned}
 	\end{equation*}
 	Equate exponents:
@@ -236,10 +469,94 @@ where $\gamma$ is arbitrary, $\vec{x_{\phi}}$ is the particular solution, and $\
 	\begin{aligned}
 		L:&& 1 &= a + b + c\\
 		T{:}&& -1 &= -2c\\
-		M:&& 0 &= d\\
+		M:&& 0 &= d \mbox{ (independent of mass)}\\
 	\end{aligned}
 	\end{equation*}
-
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{rrr}
+			1 & 1 & 1\\
+			0 & 0 & -2
+		\end{array} \right]\left[ \begin{array}{c}
+			a\\
+			c\\
+		\end{array} \right] = \left[ \begin{array}{r}
+			1\\
+			-1\\
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{rrr|r}
+			1 & 1 & 1 & 1\\
+			0 & 0 & -2 & -1
+		\end{array} \right] = \left( r_{2} \gets -\frac{r_{2}}{2} \right)
+		\left[ \begin{array}{rrr|r}
+			1 & 1 & 1 & 1\\
+			0 & 0 & 1 & \frac{1}{2}
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		a + b + c &= 1 \sep b = \mbox{ free } \sep c = \frac{1}{2}\\
+		a + b + \frac{1}{2} &= 1 \sep b = \mbox{ free } \sep c = \frac{1}{2}\\
+		a &= -b + \frac{1}{2} \sep b = \mbox{ free } \sep c = \frac{1}{2}\\
+	\end{aligned}
+	\end{equation*}\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{c}
+			a\\
+			b\\
+			c\\
+		\end{array} \right]
+		&= \left[ \begin{array}{c}
+			\frac{1}{2} - b\\
+			b\\
+			\frac{1}{2}\\
+		\end{array} \right]\\
+		&= \left[ \begin{array}{c}
+			\frac{1}{2}\\
+			0\\
+			\frac{1}{2}\\
+		\end{array} \right]
+		+ b\left[ \begin{array}{c}
+			-1\\
+			1\\
+			0\\
+		\end{array} \right]\\
+		&= s^{\frac{1}{2}}g^{\frac{1}{2}} + s^{-1}h^{1}\\ % TODO: Again, the free variable was multipled by -1, find out why
+		&= \sqrt{sg} + \frac{h}{s}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		b\left[ \begin{array}{c}
+			-1\\
+			1\\
+			0\\
+		\end{array} \right] \Rightarrow
+		(-1)\left[ \begin{array}{c}
+			-1\\
+			1\\
+			0\\
+		\end{array} \right] \Rightarrow
+		\left[ \begin{array}{c}
+			1\\
+			-1\\
+			0\\
+		\end{array} \right] \Rightarrow s^{1}h^{-1} \Rightarrow \frac{s}{h}
+	\end{aligned}
+	\end{equation*}
+	\[ v = \sqrt{gh}f\left( \frac{s}{h} \right) \] % TODO: Check if the notes had a mistake putting \sqrt{gh} instead of \sqrt{sg}
 \end{example}
+
+\section{Froude number}\label{sec:froude-number}
+As found in the previous example:
+\begin{equation*}
+	\frac{v}{\sqrt{gh}} = \frac{\mbox{inertial force}}{\mbox{gravitational force}}
+	\label{eq:froude-number}
+\end{equation*}
 
 \end{document}

@@ -1,0 +1,69 @@
+%! Author = Len Washington III
+%! Date = 8/29/24
+
+% Preamble
+\documentclass[
+	% author={}, % Remove the percentage sign and add your name within the brackets.
+	number={2},
+	title={Dimensional Analysis}
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{problems}
+	\problem The drag $D_{F}$ on an object with characteristic length $L_{p}$ (such as the radius in the class example), moving with velocity $V$ in air with density $\rho$ and dynamic viscosity $\mu$ is:
+	\[ \frac{D_{F}}{\rho V^{2}L_{p}^{2}} = f(Re),\ \ Re = \frac{\rho VL_{p}}{\mu} \]
+	where $Re$ is the Reynold's number. See the class notes.\\
+	An auto company is designing a new sports car with length $L_{p}$ and wants to know the aerodynamic drag at speed 50 mph and air temperature 25\textdegree{}C\@.
+	The engineers will build of 1/5 scale model for a wind tunnel test.
+	The wind tunnel temperature is 5\textdegree{}C\@.
+	How fast must the wind tunnel speed be to achieve similarity between the scale model and the prototype?
+	Here is some data:
+	\begin{table}[H]
+		\centering
+		\label{tab:auto-data}
+		\begin{tabular}{|c|c|c|}
+			At 25\textdegree{}C & $\rho=1.184$ Kg/$\mbox{m}^{3}$ & $\mu=1.849\times10^{-5}$\\
+			\hline
+			At 5\textdegree{}C & $\rho=1.269$ Kg/$\mbox{m}^{3}$ & $\mu=1.754\times10^{-5}$
+		\end{tabular}
+	\end{table}
+	\addanswer{Problem-1}
+
+	\problem Consider the flow of water in a circular pipe of length $l$ and radius $r$.
+	The pressure difference $p$ between the ends of the pipe influence the velocity $v$ of the flow.
+	In addition, the flow depends on the dynamic viscosity $\mu$ of water and the density of water $\rho$.
+	Find the functional dependence of $v$ on the above quantities using dimensional analysis.
+	Clearly identify all the dimensionless quantities as $\Pi_{j}$.
+	\addanswer{Problem-2}
+
+	\problem An object of mass $m$ is launched upward with initial velocity $V$.
+	The air resistance force is proportional to either the velocity $(b=1)$ or the square of the velocity $(b=2)$ in the equation below.
+	Let $h(t)$ be the height of the object which satisfies the initial value problem
+	\[ mh''(t) = -mg - a[h'(t)]^{b},\ \ h(0) = 0,\ \ h'(0) = V. \]
+	\begin{problems}
+		\subproblem Find the dimensions of the constant $a$ for both cases $b=1$ and $b=2$. \addanswer{Problem-3a}
+		\subproblem For case $b=2$, use dimensional analysis to find a formula for the height $h$ of the ball in terms of $t$ and all the parameters in the problem.
+		Identify all the dimensionless qualities.
+		Write your result with one dimensionless time $\tau=tg/V$ and a dimensionless height - the class notes might be useful.\addanswer{Problem-3b}
+	\end{problems}
+
+	\problem A rocket is launched from the surface of the Earth with an initial velocity $V$ and its engine shuts off immediately.
+	Let $x(t)$ be its distance from the surface and $R$ is the radius of the Earth.
+	Holmes' equation (1.1) is a simplified form of Newton's Universal Law of Gravitation
+	\begin{equation}
+		\frac{d^{2}x}{dt^{2}} = -\frac{gR^{2}}{(R+x)^{2}}
+		\label{eq:newton}
+	\end{equation}
+	where the mass $m$ of the rocket has been cancelled.
+	\begin{problems}
+		\subproblem Show~\eqref{eq:newton} is dimensionally correct. \addanswer{Problem-4a}
+		\subproblem Assuming the $x=f(t, R, g, V)$, use dimensional reduction to find a formula for $x$. \addanswer{Problem-4b}
+		\subproblem Do you see any issues with your formula? \addanswer{Problem-4c}
+	\end{problems}
+\end{problems}
+
+\end{document}
