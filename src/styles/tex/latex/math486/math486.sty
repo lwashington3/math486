@@ -48,4 +48,17 @@
 {0em}
 {}
 
-\newcommand{\sep}{{ }{ } & { }{ }}
+%\newcommand{\sep}{{ }{ } & { }{ }}
+
+% https://tex.stackexchange.com/questions/300207/repeat-characters-n-times
+\newcount\sep@repeat@count
+\newcommand{\myrepeat}[2]{%
+	\begingroup
+	\sep@repeat@count=\z@
+	\@whilenum\sep@repeat@count<#1\do{#2\advance\sep@repeat@count\@ne}%
+	\endgroup
+}
+
+\newcommand{\sep}[1][2]{%
+	\myrepeat{#1}{{\ }} & \myrepeat{#1}{{\ }}
+}

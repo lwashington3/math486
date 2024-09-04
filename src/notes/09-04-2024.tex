@@ -1,0 +1,248 @@
+%! Author = Len Washington III
+%! Date = 9/04/24
+
+% Preamble
+\documentclass[
+	date={September 4{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+Let $c(x,t) = $ concentration of a chemical in a region $(x, x+dx)$ at time $t$.
+
+In 3 dimensions: $[c(x,t)] = ML^{-3}$.
+
+In 1 dimension: $[c(x,t)] = ML^{-1}$.
+
+Key: $c(x,t)$ is measurable
+
+\begin{equation*}
+\begin{aligned}
+	\int_{a}^{b} c(x,t)dx = \mbox{ total concentration of chemical in } (a, b) \mbox{ at time }t
+\end{aligned}
+\end{equation*}
+Check the units
+\begin{equation*}
+\begin{aligned}
+	\left[ \int_{a}^{b} c(x,t)dx \right] = ML^{-1}\times L = M
+\end{aligned}
+\end{equation*}
+How does a chemical move?
+\definition{flux $J(x,t)$}{amount of substance that passes through $x$ in the positive direction per unit time.}
+
+The rate of change of the amount is
+\[ \frac{d}{dt}\int_{a}^{b} c(x,t)dx = J(a,t) - J(b,t) \]
+or
+\[ \int_{a}^{b} \left( \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} \right)dx = 0 \]
+This is the \textbf{Conservation of Mass!}
+\[ \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} = 0 \]
+
+What is the flux $J$?
+
+How is it related to $c(x,t)$?
+
+\section{Chemical Diffusion}\label{sec:chemical-diffusion}
+\definition{Fick's Law}{chemical moves from regions of higher concentration to lower concentration.}
+\[ J \propto -\frac{\partial c}{\partial x} \]
+or
+\[ J = -D\frac{\partial c}{\partial x} \]
+where $D$ is the diffusion constant.
+
+Substitute $J=-D\frac{\partial c}{\partial d}$ in
+\[ \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} = 0 \]
+
+\begin{equation}
+	\frac{\partial c}{\partial t} - D\frac{\partial^{2} c}{\partial x^{2}} = 0
+	\label{eq:diffusion}
+\end{equation}
+
+Diffusion equation is a partial differential equation (PDE)
+
+We need auxiliary equation conditions
+
+\begin{itemize}
+	\item What was the concentration initially (at the start, $t=0$)
+	\item What happens at the endpoints $a$ and $b$.
+\end{itemize}
+
+\subsection{Aside}\label{subsec:aside}
+Diffusion equations arise in many other settings\\
+\subsubsection{Heat transfer}\label{subsubsec:heat-transfer}
+Heat energy is measured by temperature $[\theta]$
+
+Let $u(x,t) = $ temperature in the bat at $x$ and time $t$.
+
+Same derivation as before:
+\[ \frac{\partial u}{\partial t} = -\frac{\partial J}{\partial x} \]
+Now: $J(x,t) = $ heat flux
+
+Fourier Law of Heat Conduction:
+\begin{equation}
+\begin{aligned}
+	J &= -D\frac{\partial u}{\partial x}\\
+	\frac{\partial u}{\partial t} &= D\frac{\partial^{2}u}{\partial x^{2}}\\
+\end{aligned}
+	\label{eq:fourier-heat}
+\end{equation}
+
+\subsubsection{Probability}\label{subsubsec:probability}
+Let
+
+\subsubsection{Biomedical Application}\label{subsubsec:biomedical-application}
+Drug patch concentration $=u_{0}$ (fixed)
+
+$u(x,t) = $ concentration at position $x$ (depth) and time $t$
+\[ \frac{\partial u}{\partial t} = D\frac{\partial^{2}u}{\partial x^{2}},\ \ 0 < x < \infty,\ \ t > 0 \]
+
+Initial condition: $u(x,0) = 0$.
+
+Boundary condition: $u(0, t) = u_{0}$, $u\rightarrow0, x\rightarrow\infty$
+
+\section{Dimensional Analysis}\label{sec:dimensional-analysis}
+What is $[D]$?
+
+\begin{equation*}
+\begin{aligned}
+	\left[ \frac{\partial u}{\partial t} \right] &= \left[ D\frac{\partial^{2}u}{\partial x^{2}} \right]\\
+	\left[ \frac{\partial u}{\partial t} \right] &= [D]\left[ \frac{\partial^{2}u}{\partial x^{2}} \right]\\
+	ML^{-1}T^{-1} &= [D]ML^{-3}\\
+	L^{2}T^{-1} &= [D]\\
+\end{aligned}
+\end{equation*}
+
+\subsection{Alternate Approach}\label{subsec:alternate-approach}
+\begin{enumerate}
+	\item Dimensional reduction to understand the form of the solution
+	\item Get non-dimensional problem
+	\item Use dimensionless variables to convert PDE $\rightarrow$ ODE
+\end{enumerate}
+
+\begin{equation*}
+\begin{aligned}
+	u &= f(x, t, D, u_{0})\\
+	[u] &= [x]^{a}[t]^{b}[D]^{c}[u_{0}]^{d}\\
+	ML^{-1} &= L^{a}T^{b}\left( L^{2}T^{-1} \right)^{c}\left( ML^{-1} \right)^{d}\\
+	M^{1}L^{-1}T^{0} &= L^{a}T^{b}L^{2c}T^{-c}M^{d}L^{-d}\\
+	M^{1}L^{-1}T^{0} &= L^{a+2c-d}T^{b-c}M^{d}\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\left[ \begin{array}{rrrr}
+		1 & 0 &  2 & -1\\ % L
+		0 & 1 & -1 & 0\\ % T
+		0 & 0 &  0 & 1\\ % M
+	\end{array} \right]
+	\left[ \begin{array}{c}
+		a\\
+		b\\
+		c\\
+		d\\
+	\end{array} \right]
+	= \left[ \begin{array}{r}
+		-1\\
+		0\\
+		1\\
+	\end{array} \right]
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	a + 2c - d &= -1 \sep b - c &= 0 \sep d &= 1\\
+	a &= -2c \sep b &= c \sep d &= 1\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\left[ \begin{array}{c}
+		a\\
+		b\\
+		c\\
+		d\\
+	\end{array} \right]
+	&= \left[ \begin{array}{c}
+		-2c\\
+		c\\
+		c\\
+		1\\
+	\end{array} \right]\\
+	&= \left[ \begin{array}{c}
+		0\\
+		0\\
+		0\\
+		1\\
+	\end{array} \right]
+	+ c\left[ \begin{array}{c}
+		-2\\
+		1\\
+		1\\
+		0\\
+	\end{array} \right]\\
+	&= u_{0}^{1} + \left( t^{1}D^{1}x^{-2} \right)^{c}\\
+	&= u_{0} + \left( \frac{tD}{x^{2}} \right)^{c}\\
+	u(x,t) &= u_{0}F\left( \frac{tD}{x^{2}} \right)
+\end{aligned}
+\end{equation*}
+Boundary condition makes us multiple the vector within the nullspace by $-\frac{1}{2}$.
+
+\begin{equation*}
+\begin{aligned}
+	-\frac{1}{2}\left[ \begin{array}{c}
+		-2\\
+		1\\
+		1\\
+		0\\
+	\end{array} \right]
+	&= \left[ \begin{array}{c}
+		1\\
+		-\frac{1}{2}\\
+		-\frac{1}{2}\\
+		0\\
+	\end{array} \right]\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\left[ \begin{array}{c}
+		a\\
+		b\\
+		c\\
+		d\\
+	\end{array} \right]
+	&= \left[ \begin{array}{c}
+		0\\
+		0\\
+		0\\
+		1\\
+	\end{array} \right]
+	+ c\left[ \begin{array}{c}
+		1\\
+		-\frac{1}{2}\\
+		-\frac{1}{2}\\
+		0\\
+	\end{array} \right]\\
+	&= u_{0}^{1} + \left( t^{-\frac{1}{2}}D^{-\frac{1}{2}}x^{1} \right)^{c}\\
+	&= u_{0} + \left( \frac{x}{\sqrt{tD}} \right)^{c}\\
+	u(x,t) &= u_{0}F\left( \frac{x}{\sqrt{tD}} \right)\\
+	\frac{u(x,t)}{u_{0}} &= F\left( \frac{x}{\sqrt{tD}} \right)\\
+\end{aligned}
+\end{equation*}
+
+We can make the similarity variable $\eta = \frac{x}{\sqrt{tD}}$.
+$[\eta]=1$
+
+\begin{equation*}
+\begin{aligned}
+	u(x,t) &= v(\eta)
+	% TODO: Get the rest of the notes
+\end{aligned}
+\end{equation*}
+
+
+\begin{equation}
+	N(x) = \mbox{ cumulative normal distribution } = \int_{}^{}
+	\label{eq:cumulative-normal-distribution}
+\end{equation}
+
+\end{document}
