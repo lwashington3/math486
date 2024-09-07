@@ -1,0 +1,97 @@
+%! Author = Len Washington III
+%! Date = 9/6/24
+
+% Preamble
+\documentclass[
+	% author={}, % Remove the percentage sign and add your name within the brackets.
+	number={3},
+	title={}
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{problems}
+	\problem In class (Lecture 5), we considered a simplified drug path diffusion model.
+	Let $u(x,t)$ ($M/L$ in 1 space dim.) be the concentration of a drug at depth $x$ from the surface of the skin at time $t$.
+	We found that $u$ satisfies the diffusion equation problem
+	\begin{equation*}
+	\begin{aligned}
+		\frac{\partial u}{\partial t} = D\frac{\partial^{2} u}{\partial x^{2}},\ \ x > 0,\ \ t > 0\\
+		\mbox{IC: } u(x, 0) = 0,\ \ \mbox{BC: } u(0, t) = u_{0},\ \ u(\infty, t) = 0.
+	\end{aligned}
+	\end{equation*}
+	Using the similarity variable $\eta = \frac{x}{\sqrt{Dt}}$, we converted the PDE to an ODE and derived the solution
+	\begin{equation}
+		u(x,t) = u_{0}\mbox{erfc}\left( x / 2\sqrt{Dt} \right),\ \ \mbox{erfc}(y) = 1 - \frac{2}{\sqrt{\pi}}\int_{0}^{y} e^{-r^{2}}dr.
+		\label{eq:3.1}
+	\end{equation}
+	If $u_{0} = 10$ and $D = 1/4$ then
+	\begin{problems}
+		\subproblem Make a graph of $u(2,t)$, i.e. at depth $x=2$, from $t=0$ to $t=100$.
+		Does this make sense? \addanswer{Problem-1a}
+		\subproblem Find the first time $t$ when the concentration at depth $x=2$ is equal to 4. \addanswer{Problem-1b}
+		\subproblem On the same set of axes, plot $u(x,t)$ from $x=0$ tp $x=10$ for the sequence of times $t=1, 5, 10, 50$.
+		Please label each graph with its appropriate time $t$. \addanswer{Problem-1c}
+	\end{problems}
+	\problem Consider a drug delivery system in which the drug is delivered with a constant flow or flux $J = -D\frac{\partial u}{\partial x}$ at the surface of the skin, $x=0$.
+	You can think of it as a drup pump at $x=0$.
+	We assume $u(x,t)$ ($M/L$ in 1 space dim.) is the concentration satisfying a chemical diffusion problem with a constant flow or flux at the boundary $x=0$:
+	\begin{equation*}
+		\begin{aligned}
+			\frac{\partial u}{\partial t} = D\frac{\partial^{2} u}{\partial x^{2}},\ \ x > 0,\ \ t > 0\\
+			\mbox{IC: } u(x, 0) = 0,\ \ \mbox{BC: } D\frac{\partial u}{\partial x}(0, t) = -A,\ \ u(\infty, t)=0.
+		\end{aligned}
+	\end{equation*}
+
+	\begin{problems}
+		\subproblem What are the dimensions of $D$ and $A$? \addanswer{Problem-2a}
+		\subproblem Use dimensional reduction to derive a form of $u(x, t)$.
+		Is there a similarity variable, if so call it $\eta$.
+		Be sure your similarity variable vanishes at $x=0$ so $\eta=0$. \addanswer{Problem-2b}
+		\subproblem Use the class notes to transform the diffusion problem into an ODE-BVP\@.
+		Verify that the boundary conditions are consistent with the IC and BC of the diffusion problem. \addanswer{Problem-2c}
+	\end{problems}
+	\problem A more realistic model of the drug patch has the drug diffusing in the skin with diffusion coefficient $D$ but also degrading according to a first order chemical reaction with rate constant $k$, lookup a first chemical reaction online.
+	The chemical concentration of the drug is $u(x,t)$ ($M/L$) in the skin and the patch at $x=0$ provides a concentration $u(0, t) = Ae^{-kt}$.
+	$k > 0$, also decaying in time.
+	The PDE problem for the concentration $u$ of the drug is:
+	\begin{equation}
+		\frac{\partial u}{\partial t} = D\frac{\partial^{2} u}{\partial x^{2}} - ku, \ \ x > 0,\ \ t > 0
+		\label{eq:3.2}
+	\end{equation}
+	\begin{equation}
+		\mbox{IC: } u(x, 0) = 0
+		\label{eq:3.3}
+	\end{equation}
+	\begin{equation}
+		\mbox{BC: } u(0, t) = Ae^{-kt}, \ \ u(\infty, t) = 0.
+		\label{eq:3.4}
+	\end{equation}
+	\begin{problems}
+		\subproblem Describe the meaning of each term on the right side of equation~\eqref{eq:3.2}. \addanswer{Problem-3a}
+		\subproblem If the concentration is independent of $x$, i.e. a simple first order chemical reaction, state and solve the ODE for kinetics of the reaction assuming as initial concentration of $A$.
+		You can look for a solution of~\eqref{eq:3.2} that only depends on $t$. \addanswer{Problem-3b}
+		\subproblem Suppose the boundary condition at $x=0$ in~\eqref{eq:3.4} is changed to $u(0, t) = A$.
+		Use~\eqref{eq:3.2} to find an equation for the long-time or steady-state concentration, i.e. $U(x) = \lim_{t\rightarrow\infty} u(x,t)$, i.e. independnt of $t$.
+		Find $U(x)$.\addanswer{Problem-3c}
+		\subproblem In the original problem~\eqref{eq:3.2}-\eqref{eq:3.4}, find the dimensions of $A$, $D$ and $k$. \addanswer{Problem-3d}
+		\subproblem Use dimensional analysis to identify three dimensionless quantities that involve the variables and parameters in the problem. \addanswer{Problem-3e}
+	\end{problems}
+	\problem ODE review.
+	Please review Dawkin's ODE notes, if needed.
+	Classify and solve:
+	\begin{problems}
+		\subproblem Find the general solution $y(t): \frac{dy}{dt} = 2t - y$. \addanswer{Problem-4a}
+		\subproblem Solve the initial value problem $y(t): \frac{dy}{dt} - 2ty = 2$, $y(0) = 0$ and write your solution in terms of the error function: $\mbox{erf}(t) = \frac{2}{\sqrt{\pi}}\int_{0}^{t} e^{-z^{2}} dz$. \addanswer{Problem-4b}
+		\subproblem Find the general solution $y(t)$ to:
+		\begin{problems}
+			\subsubproblem $y'' - 4y = 0$ \addanswer{Problem-4c-i}
+			\subsubproblem $y'' + 5y' + 6y = 0$ \addanswer{Problem-4c-ii}
+		\end{problems}
+	\end{problems}
+\end{problems}
+
+\end{document}
