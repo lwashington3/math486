@@ -5,6 +5,7 @@
 \documentclass[
 	date={September 4{,} 2024}
 ]{math486notes}
+\definecolor{emphorange}{HTML}{ed3624}
 
 % Document
 \begin{document}
@@ -34,9 +35,12 @@ How does a chemical move?
 The rate of change of the amount is
 \[ \frac{d}{dt}\int_{a}^{b} c(x,t)dx = J(a,t) - J(b,t) \]
 or
-\[ \int_{a}^{b} \left( \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} \right)dx = 0 \]
+\[ \int_{a}^{b} \frac{\partial c}{\partial t}dx = -\int_{a}^{b} \frac{\partial J}{\partial x} \Rightarrow \int_{a}^{b} \left( \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} \right)dx = 0 \]
 This is the \textbf{Conservation of Mass!}
-\[ \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} = 0 \]
+\begin{equation}
+	\frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} = 0
+	\label{eq:conservation-of-chemical-mass}
+\end{equation}
 
 What is the flux $J$?
 
@@ -49,9 +53,7 @@ or
 \[ J = -D\frac{\partial c}{\partial x} \]
 where $D$ is the diffusion constant.
 
-Substitute $J=-D\frac{\partial c}{\partial d}$ in
-\[ \frac{\partial c}{\partial t} + \frac{\partial J}{\partial x} = 0 \]
-
+Substitute $J=-D\frac{\partial c}{\partial d}$ into~\eqref{eq:conservation-of-chemical-mass}
 \begin{equation}
 	\frac{\partial c}{\partial t} - D\frac{\partial^{2} c}{\partial x^{2}} = 0
 	\label{eq:diffusion}
@@ -59,7 +61,15 @@ Substitute $J=-D\frac{\partial c}{\partial d}$ in
 
 Diffusion equation is a partial differential equation (PDE)
 
-We need auxiliary equation conditions
+We need auxiliary equation conditions:
+\begin{equation*}
+\begin{aligned}
+	\frac{\partial c}{\partial t} = D\frac{\partial^{2} c}{\partial x^{2}},\ \ \  \left. \begin{array}{c}
+		a < x < b\\
+		t > 0
+	\end{array} \right\}
+\end{aligned}
+\end{equation*}
 
 \begin{itemize}
 	\item What was the concentration initially (at the start, $t=0$)
@@ -71,11 +81,11 @@ Diffusion equations arise in many other settings\\
 \subsubsection{Heat transfer}\label{subsubsec:heat-transfer}
 Heat energy is measured by temperature $[\theta]$
 
-Let $u(x,t) = $ temperature in the bat at $x$ and time $t$.
+Let $u(x,t) = $ temperature in the bar at $x$ and time $t$.
 
 Same derivation as before:
 \[ \frac{\partial u}{\partial t} = -\frac{\partial J}{\partial x} \]
-Now: $J(x,t) = $ heat flux
+Now: $J(x,t) = $ \textit{heat} flux
 
 Fourier Law of Heat Conduction:
 \begin{equation}
@@ -85,14 +95,36 @@ Fourier Law of Heat Conduction:
 \end{aligned}
 	\label{eq:fourier-heat}
 \end{equation}
+where $D=$ thermal diffusion constant
 
 \subsubsection{Probability}\label{subsubsec:probability}
-Let
+Let $p(x,t) = $ probability density function of a stochastic process $X(t)$
+
+\begin{equation}
+	Pr\left[ a \leq X(t) < b \right] = \int_{a}^{b} p(x,t) dx
+	\label{eq:probability-density-function}
+\end{equation}
+
+Example: Random wale (discrete) $\rightarrow$ Brownian motion (continuous)
+
+\textbf{Brownian motion's pdf}:
+\begin{equation}
+	\frac{\partial p}{\partial t} = \frac{1}{2}\frac{\partial^{2} p}{\partial x^{2}},\ \ -\infty < x < \infty, t > 0
+	\label{eq:brownian-probability-function}
+\end{equation}
+where the initial condition $(X(0)=0) \Rightarrow p(x,0) = \delta$ (The dirac delta function)
+\[ \delta(x) = \left\{ \begin{array}{cc}
+	0 & x\neq 0\\
+	\infty & x = 0\\
+\end{array} \right. \]
+such that
+\[ \int_{-\infty}^{\infty} \delta(x)dx = 1 \]
+
 
 \subsubsection{Biomedical Application}\label{subsubsec:biomedical-application}
 Drug patch concentration $=u_{0}$ (fixed)
 
-$u(x,t) = $ concentration at position $x$ (depth) and time $t$
+$u(x,t) = $ concentration at position $x$ (depth) and time $t$ ($x=0$ is the surface of the skin)
 \[ \frac{\partial u}{\partial t} = D\frac{\partial^{2}u}{\partial x^{2}},\ \ 0 < x < \infty,\ \ t > 0 \]
 
 Initial condition: $u(x,0) = 0$.
@@ -110,6 +142,10 @@ What is $[D]$?
 	L^{2}T^{-1} &= [D]\\
 \end{aligned}
 \end{equation*}
+
+\begin{center}
+	\textcolor{blue}{Exact solution of $u$ is hard!\\Try Laplace transforms}
+\end{center}
 
 \subsection{Alternate Approach}\label{subsec:alternate-approach}
 \begin{enumerate}
@@ -229,20 +265,132 @@ Boundary condition makes us multiple the vector within the nullspace by $-\frac{
 \end{aligned}
 \end{equation*}
 
+\[ \frac{u}{u_{0}} = F\left( \frac{x}{\sqrt{DT}} \right) \]
+is a huge reduction.
+
+Introduce a non-dimensional variable into $u$.
+\[ v(x, t) = \frac{u(x,t)}{u_{0}}, \]
+$[v] = 1, 0 \leq v < 1$
+
 We can make the similarity variable $\eta = \frac{x}{\sqrt{tD}}$.
 $[\eta]=1$
 
 \begin{equation*}
 \begin{aligned}
-	u(x,t) &= v(\eta)
-	% TODO: Get the rest of the notes
+	u(x,t) &= v(\eta)\\
+	u_{t} = Du_{xx} &\Rightarrow v_{t} = Dv_{xx}
+\end{aligned}
+\end{equation*}
+The chain rule from Multivariate calculus says that $v(x,t) = v(\eta(x, t))$
+\begin{equation*}
+\begin{aligned}
+	\frac{\partial}{\partial t} = \frac{\partial}{\partial \eta}\frac{\partial \eta}{\partial t} = -\frac{1}{2}\frac{x}{\sqrt{D}}\frac{1}{t^{3/2}}\frac{\partial}{\partial \eta}\\
+	\frac{\partial}{\partial x} = \frac{\partial}{\partial \eta}\frac{\partial \eta}{\partial x} = \frac{1}{\sqrt{tD}}\frac{\partial}{\partial n}\\
+	\frac{\partial^{2}}{\partial x^{2}} = \frac{1}{Dt}\frac{\partial^{2}}{\partial \eta^{2}} \textcolor{emphorange}{\leftarrow \mbox{ be able to derive!!}} % TODO: Find out what happened to the square root
 \end{aligned}
 \end{equation*}
 
+Plug into $u_{t} = Du_{xx}$
+\begin{equation*}
+\begin{aligned}
+	-\frac{1}{2}\frac{x}{\sqrt{D}}\frac{1}{t^{3/2}}v' &= D\frac{1}{Dt}v''\\
+	-\frac{1}{2}\frac{x}{\sqrt{D}}\frac{1}{t^{3/2}}v' &= \frac{1}{t}v''\\
+	-\frac{1}{2}\frac{x}{\sqrt{D}}\frac{1}{t^{1/2}}v' &= v''\\
+	-\frac{1}{2}\frac{x}{\sqrt{D}t^{1/2}}v' &= v''\\
+	-\frac{1}{2}\frac{x}{\sqrt{Dt}}v' &= v''\\
+	-\frac{1}{2}\eta v' &= v''\\
+	v'' + \frac{1}{2}\eta v' &= 0\\
+\end{aligned}
+\end{equation*}
 
+Initial conditional(s) and boundary conditions must be consistent
+Boundary conditions:
+\begin{equation*}
+\begin{aligned}
+	\frac{u(0, t)}{u_{0}} = \frac{u_{0}}{u_{0}} \Rightarrow v(0) = 1\\\\
+	x = 0 \Rightarrow \eta = \frac{x}{Dt} = 0\\
+	u \rightarrow 0 \mbox{ as } x \rightarrow \infty \Rightarrow v \rightarrow 0 \mbox{ if } \eta \rightarrow \infty
+\end{aligned}
+\end{equation*}
+Initial condition:
+\begin{equation*}
+\begin{aligned}
+	u(x, 0) = 0\\
+	t = 0 \Rightarrow \eta \rightarrow \infty \Rightarrow v(\infty) = 0
+\end{aligned}
+\end{equation*}
+
+\vspace{1em}
+\begin{center}
+	Boundary Value ODE Problem
+	\begin{equation*}
+	\begin{aligned}
+		v'' + \frac{1}{2}\eta v' = 0,\ \ 0 < \eta < \infty\\
+		v(0) = 1,\ \ v(\infty) = 0
+	\end{aligned}
+	\end{equation*}
+	2nd order, linear, not constant coefficient homogeneous.
+\end{center}
+
+Let $g = v'$
+\begin{equation*}
+\begin{aligned}
+	g' + \frac{1}{2}\eta g &= 0\\
+	I &= e^{\int \frac{1}{2}\eta d\eta}\\
+	  &= e^{\frac{\eta^{2}}{4}}\\
+	e^{\frac{\eta^{2}}{4}}g' + \frac{1}{2}\eta e^{\frac{\eta^{2}}{4}}g &= 0 \\
+	\left( e^{\frac{\eta^{2}}{4}}g \right)' &= 0\\
+	e^{\frac{\eta^{2}}{4}}g &= C\\
+	g &= Ce^{-\frac{\eta^{2}}{4}}\\
+	  &= c_{2}e^{-\frac{\eta^{2}}{4}}\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	v &= \int g d\eta\\
+	  &= c_{1} + c_{2}\int_{0}^{\eta} e^{-\frac{\zeta^{2}}{2}}d\zeta\\ % TODO: Find out how the denomiator changed from 2 to 4
+	v(0) = 1 &\Rightarrow c_{1} = 1\\
+	v &= 1 + c_{2}\int_{0}^{\eta} e^{-\frac{\zeta^{2}}{2}}d\zeta\\
+	v(\infty) &= 0\\
+	0 &= 1 + c_{2}\int_{0}^{\infty} e^{-\frac{\zeta^{4}}{2}}d\zeta\\
+	0 &= 1 + c_{2}[ \sqrt{\pi} ]\\
+	-1 &= c_{2}\sqrt{\pi}\\
+	-\frac{1}{\sqrt{\pi}} &= c_{2}\\
+\end{aligned}
+\end{equation*}
+\[	v(\eta) = 1 - \frac{1}{\sqrt{\pi}}\int_{0}^{\eta}e^{\frac{-s^{2}}{4}} ds \]
+Change this back to the original variable: $\eta = \frac{x}{\sqrt{DT}}, v = \frac{u}{u_{0}}$
+\begin{equation*}
+\begin{aligned}
+	\frac{u(\eta)}{u_{0}} &= 1 - \frac{1}{\sqrt{\pi}}\int_{0}^{\eta}e^{\frac{-s^{2}}{4}} ds\\
+	\frac{u(x, t)}{u_{0}} &= 1 - \frac{1}{\sqrt{\pi}}\int_{0}^{x/\sqrt{Dt}}e^{\frac{-s^{2}}{4}} ds\\
+	u(x, t) &= u_{0}\left[ 1 - \frac{1}{\sqrt{\pi}}\int_{0}^{x/\sqrt{Dt}}e^{\frac{-s^{2}}{4}} ds \right]\\
+			&= u_{0}\left[ 1 - \mbox{erf}\left( \frac{x}{2\sqrt{Dt}} \right) \right]\\
+\end{aligned}
+\end{equation*}
+where erf is the error function
 \begin{equation}
-	N(x) = \mbox{ cumulative normal distribution } = \int_{}^{}
+	\mbox{erf}(y) = \frac{2}{\sqrt{\pi}}\int_{0}^{y} e^{-s^{2}}ds
+	\label{eq:erf}
+\end{equation}
+\[ \mbox{erfc} = 1 - \mbox{erf} \]
+\begin{equation*}
+\begin{aligned}
+	u(x, t) &= u_{0}\left[ 1 - \mbox{erf}\left( \frac{x}{2\sqrt{Dt}} \right) \right]\\
+			&= u_{0}\mbox{erfc}\left( \frac{x}{2\sqrt{Dt}} \right)\\
+\end{aligned}
+\end{equation*}
+
+\begin{center}
+	\textbf{Method of Similarity Variables}
+\end{center}
+
+\subsection{Aside 2 (Amother way of writing \mbox{erfc})}\label{subsec:aside-2}
+\begin{equation}
+	N(x) = \mbox{ cumulative normal distribution } = \int_{-\infty}^{x}\frac{e^{-\frac{s^{2}}{2}}ds}{\sqrt{2\pi}}
 	\label{eq:cumulative-normal-distribution}
 \end{equation}
+$N(-\infty) = 0, N(\infty) = 1$
+\[ N(x) = \frac{1 + \mbox{erf}\left( \frac{x}{\sqrt{2}} \right)}{2} \]
 
 \end{document}
