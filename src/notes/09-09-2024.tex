@@ -1,0 +1,138 @@
+%! Author = Len Washington III
+%! Date = 9/09/24
+
+% Preamble
+\documentclass[
+	date={September 9{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\section{Pharmacology -- how drugs behave in the body}\label{sec:pharmacology}
+\subsection{Phramacokinetics (PK)}\label{subsec:phramacokinetics-(pk)}
+Movement of drugs in the body
+
+\subsection{Pharmacodynamics (PD)}\label{subsec:pharmacodynamics-(pd)}
+Body's response to drugs\\
+
+We will focus more on PK (movement of drugs)
+\begin{itemize}
+	\item absorption
+	\item distribution
+	\item elimination or clearance
+\end{itemize}
+
+FDA - Federal Drug Administration
+Questions:
+\begin{itemize}
+	\item Dosage -- what is appropriate
+	\item Toxicity
+	\item Side effects!
+\end{itemize}
+
+The upper level is the minimum toxic level (MToL) and the lower level is the minimum effective therapeutic level (MTL).
+The concentration of the drug within the body must stay within the therapeutic region window $(MTL < conc < MToL)$.
+
+\section{Modeling Tool: Compartment Analysis}\label{sec:modeling-tool:-compartment-analysis}
+Let $x(t)$ = the amount of drug in blood at time $t$.
+
+Multiple compartments (kidneys, liver, etc).
+
+\begin{center}
+	Question: How is drug removed from a compartment?
+\end{center}
+Elimination, clearance or removal process.
+
+\subsection{Simple Assumption}\label{subsec:simple-assumption}
+First Order Chemical Reaction!
+($A^{k} \rightarrow $ products)
+
+\textbf{Chemical Kinetics}
+$x(t) = $ amount
+\[ \frac{dx}{dt} = -kx,\ \ x(0) = x_{0} \]
+
+\begin{example}[IV drip delivery system - one compartment model]
+	IV infusion $\rightarrow$ blood $\rightarrow$
+
+	$I$ = infusion rate, $[I] = MT^{-1}$
+
+	ODE: ($x(0) = 0$)
+	\begin{equation*}
+	\begin{aligned}
+		\frac{dx}{dt} &= \mbox{input} + \mbox{output (removal)}\\
+		\frac{dx}{dt} &= I - kx\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \frac{dx}{dt} \right] &= [I] - [kx]\\
+		MT^{-1} &= MT^{-1} - [k]M\\
+		MT^{-1} &= [k]M\\
+		T^{-1} &= [k]\\
+		[k] &= T^{-1}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{dx}{dt} &= I - kx\\
+		\frac{dx}{dt} + kx &= I\\
+		I.F. &= e^{\int k dt}\\
+			 &= e^{k\int dt}
+			 &= e^{kt}\\
+		e^{kt}x' + ke^{kt}x &= Ie^{kt}\\
+		\frac{d}{dt}\left( e^{kt}x \right) &= Ie^{kt}\\
+		e^{kt}x &= \int Ie^{kt}\\
+		e^{kt}x &= \frac{I}{k}e^{kt} + C\\
+		x &= \frac{I}{k} + Ce^{-kt}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		0 &= \frac{I}{k} + Ce^{-k(0)}\\
+		0 &= \frac{I}{k} + Ce^{0}\\
+		0 &= \frac{I}{k} + C(1)\\
+		-C &= \frac{I}{k}\\
+		C &= -\frac{I}{k}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		x &= \frac{I}{k} - \frac{I}{k}e^{-kt}\\
+		x &= \frac{I}{k} \left( 1 - e^{-kt} \right)\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{Pk Metrics}\label{sec:pk-metrics}
+$x(t) = $ amount in plasma
+$c(t) = \frac{x(t)}{V_{blood}}$ where the average amount of blood ($V_{blood}$) in a person is $\approx 5L$. This is \emph{incorrect} because it does not match the data.
+
+\begin{equation}
+\begin{aligned}
+	V_{D} &= \mbox{ apparent volume of distribution.}\\ % TODO: Check this
+	V_{D} &= \frac{\mbox{amount of drug entering the body}}{\mbox{initial concentration in the plasma}}\\
+		  &= \frac{x(0)}{c(0)}
+\end{aligned}
+	\label{eq:}
+\end{equation}
+This data is based off a 70 kilogram man.
+
+\begin{table}[H]
+	\centering
+	\caption{}
+	\label{tab:}
+	\begin{tabular}{ll}
+		\textbf{Drug} & $\mathbf{V_{D}}$\\
+		warfarin & 8L\\
+		theophline & 30L\\
+		chloroquine & 15000L -- absorbed in fat
+	\end{tabular}
+\end{table}
+
+\section{Area Under Curve (AUC)}\label{sec:area-under-curve-(auc)}
+Measures the total exposure to the drug
+\[ AUC = \frac{\mbox{total amount}}{k} \]
+
+
+\end{document}
