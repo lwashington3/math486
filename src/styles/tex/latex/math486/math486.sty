@@ -62,3 +62,10 @@
 \newcommand{\sep}[1][2]{%
 	\myrepeat{#1}{{\ }} & \myrepeat{#1}{{\ }}
 }
+
+\newcommand{\halflife}{\tau_{\frac{1}{2}}}
+
+\RequirePackage{mathrsfs}
+\newcommand{\laplace}[1][]{\mathscr{L}\ifx#1\empty\else\left\{ #1 \right\}\fi}
+\newcommand{\laplacei}[1][]{\mathscr{L}^{-1}\ifx#1\empty\else\left\{ #1 \right\}\fi}
+\newcommand{\unitstep}{\mathscr{U}}

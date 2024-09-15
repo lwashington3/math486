@@ -1,0 +1,157 @@
+%! Author = Len Washington III
+%! Date = 9/11/24
+
+% Preamble
+\documentclass[
+	date={September 11{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\[ AUC = \int_{t_{1}}^{t_{2}} c(t)dt,\ \ [AUC] = \frac{MT}{Volume}  \]
+
+\begin{equation*}
+\begin{aligned}
+	\bar{c(t)} &= \frac{1}{t_{2} - t_{1}}\int_{t_{1}}^{t_{2}}
+\end{aligned}
+\end{equation*}
+
+\section{Half-life}\label{sec:half-life}
+The time to reduce by $\frac{1}{2}$,
+\begin{example}{Find $\tau_{\frac{1}{2}}$}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{D}{2} &= De^{-k\tau_{\frac{1}{2}}}\\
+		\frac{1}{2} &= e^{-k\tau_{\frac{1}{2}}}\\
+		\ln\left( \frac{1}{2} \right) &= -k\tau_{\frac{1}{2}}\\
+		k &= \frac{\ln\left( \frac{1}{2} \right)}{\tau_{\frac{1}{2}}}\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\begin{example}
+	One compartment (plasma) with inhection
+	\[ \frac{dx}{dt} = -kx,\ \ k > 0,\ \ x(0) = D \]
+	Solution:
+	\[ x(t) = De^{-kt} \]
+	This is exponential decay
+	\begin{equation}
+		c(t) = \frac{x(t)}{V_{D}} = \frac{D}{V_{D}}e^{-kt}
+		\label{eq:auc-for-example}
+	\end{equation}
+	\begin{equation*}
+	\begin{aligned}
+		AUC = \int_{0}^{\infty} x(t)dt = \frac{D}{k}
+	\end{aligned}
+	\end{equation*}
+	Total amount eliminated = $kAUC = D$
+\end{example}
+
+\begin{example}{Patient}
+	A patient gets a \emph{loading} does of 400mg of a drug.
+	\begin{equation*}
+	\begin{aligned}
+		V_{D} &= 30L\\
+		k &= 0.115 hr^{-1} (\mbox{removal rate})\\
+		\halflife &= \frac{\ln 2}{}
+	\end{aligned}
+	\end{equation*}
+	Assume a simple one compartment model as above with injection $D=400$ mg at $t=0$. What is the concentration after 4 hours.
+	\begin{equation*}
+	\begin{aligned}
+		c(t) &= \frac{400}{30}e^{-0.115(4)}\\
+			 &= 8.4 \mbox{mg}/\mbox{L}
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{Alternate formulation}\label{sec:alternate-formulation}
+One compartment model injection at $t=0$.
+\begin{equation}
+	\frac{dx}{dt} = -kx + D\delta(t),\ \ x(0) = 0
+	\label{eq:create-name}
+\end{equation}
+
+\subsection{Properties}\label{subsec:properties}
+\begin{equation}
+	\int_{-\infty}^{\infty} \delta(t) dt = 1
+	\label{eq:delta-dirac-1}
+\end{equation}
+
+\begin{equation}
+	\int_{-\infty}^{\infty} \delta(t)f(t) dt = f(0)
+	\label{eq:delta-dirac-2}
+\end{equation}
+
+\subsection{Dimensional Analysis}\label{subsec:dimensional-analysis}
+\begin{equation*}
+\begin{aligned}
+	\frac{dx}{dt} &= -kx + D\delta(t)\\
+	\left[ \frac{dx}{dt} \right] &= \frac{M}{T}\\
+	&= [kx]\\
+	[k] &= \frac{1}{T}\\
+	[D\delta(t)] &= \frac{M}{T}\\
+	[\delta(t)] &= \frac{1}{T}\\
+\end{aligned}
+\end{equation*}
+Check: Since $\int_{-\infty}^{\infty} \delta(t)dt = 1$
+
+\section{Method of Solution to Integral Transforms}\label{sec:method-of-solution-to-integral-transforms}
+$\laplace[~]$ = Laplace Transform Operator
+
+Solve~\eqref{eq:create-name} using Laplace Transforms:
+\begin{equation*}
+\begin{aligned}
+	X(s) &= \laplace[x(t)]\\
+		 &= \int_{0}^{\infty} e^{-st} x(t)dt
+\end{aligned}
+\end{equation*}
+Rules:
+$\dots$
+
+\begin{equation*}
+\begin{aligned}
+	\laplace[\frac{dx}{dt}] &= \laplace[ -kx + D\delta(t) ]\\
+							&= \laplace[-kx] + \laplace[D\delta(t)]\\
+							&= -k\laplace[x(t)] + D\laplace[\delta(t)]\\
+	sX(s) - x(0) &= -kX(s) + D\times1\\
+	sX(s) - 0 &= -kX(s) + D\\
+	sX(s) + kX(s) &= D\\
+	(s+k)X(s) &= D\\
+	X(s) &= \frac{D}{s+k}\\
+	\laplacei[X(s)] &= D\laplacei[\frac{1}{s+k}]\\
+	x(t) &= De^{-k}\\
+\end{aligned}
+\end{equation*}
+
+\section{Multiple Dosing}\label{sec:multiple-dosing}
+Two injections
+Injection at $t=0$ and a 2nd injection at $t=t_{1}$.
+\[ D\delta(t) + D\delta(t - t_{1}) \]
+\begin{equation}
+	\frac{dx}{dt} = -kx + D\delta(t) + D\delta(t - t_{1}),\ \ x(0) = 0
+	\label{eq:two-injections}
+\end{equation}
+
+Apply Laplace Transforms to~\eqref{eq:two-injections}.
+
+\begin{equation*}
+\begin{aligned}
+	X(s) &= \laplace[x(t)]\\
+	\laplace[\delta(t)] &= 1\\
+	\laplace[ \delta(t - t_{1}) ] &= \int_{0}^{\infty} \dots\\
+		&= e^{-st_{1}}
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\laplace[\frac{dx}{dt}] &= \laplace{-kx} + D\laplace[\delta(t)] + D\laplace[\delta(t-t_{1})]\\
+	sX(s) - x(0) &= -kX(s) + D(1) + De^{-st_{1}}\\
+	sX(s) - 0 + kX(s) &= D + De^{-st_{1}}\\
+	(s+k)X(s) &= D + De^{-st_{1}}\\
+	X(s) &= \frac{D}{s+k} + \frac{De^{-st_{1}}}{s+k}\\
+\end{aligned}
+\end{equation*}
+
+\end{document}
