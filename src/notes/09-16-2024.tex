@@ -1,0 +1,116 @@
+%! Author = Len Washington III
+%! Date = 9/16/24
+
+% Preamble
+\documentclass[
+	date={September 16{,} 2024}
+]{math486notes}
+
+% Document
+\begin{document}
+
+Multiple Dosing. Two injections. Injection at $t=0$ and $t=t_{1}$.
+
+\begin{equation*}
+\begin{aligned}
+	D\delta(t) + D\delta(t - t_{1})&\\
+	\frac{dx}{dt} &= -kx + D\delta(t) + D\delta(t - t_{1}),\ \ x(0) = 0
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\laplace[\frac{dx}{dt}] &= \laplace[-kx] + \laplace[D\delta(t)] + \laplace[D\delta(t - t_{1})]\\
+	sX(s) &= -k\laplace[x] + D\laplace[\delta(t)] + D\laplace[\delta(t - t_{1})]\\
+	sX(s) &= -kX(s) + D(1) + De^{st_{1}}\\
+	sX(s) + kX(s) &= D + De^{st_{1}}\\
+	(s+k)X(s) &= D + De^{st_{1}}\\
+	X(s) &= \frac{D}{s+k} + D\frac{e^{st_{1}}}{s+k}\\
+	\laplacei[X(s)] &= \laplacei[\frac{D}{s+k}] + \laplacei[D\frac{e^{st_{1}}}{s+k}]\\
+	x(t) &= D\laplacei[\frac{1}{s+k}] + D\laplacei[\frac{e^{st_{1}}}{s+k}]\\
+	x(t) &= De^{-kt} + De^{-kt}\unitstep(t+t_{1})\\
+		 &= De^{-kt} \left(1 + \unitstep(t+t_{1}) \right)\\
+		 &= \left\{ \begin{array}{ll}
+		 	De^{-kt} & 0 \leq t < t_{1}\\
+			De^{-kt} + De^{-k(t-t_{1})} & t \geq t_{1}
+		 \end{array} \right.
+\end{aligned}
+\end{equation*}
+
+\section{Intermittent Infusion (IV)}\label{sec:intermittent-infusion}
+Over finite time intended
+
+\[ I(t) = \left\{ \begin{array}{cl}
+	D & 0 \leq t < 1\\
+	0 & t > 1
+\end{array} \right. \]
+\begin{equation*}
+\begin{aligned}
+	\frac{dx}{dt} = -kx + I(t),\ \ x(0) = 0,\ \ c = \frac{x}{volume}
+\end{aligned}
+\end{equation*}
+
+How to model $I(t)$?
+Want a one line formula to use Laplace Transform Table
+
+\begin{equation}
+	I(t) = D[ \unitstep(t) - \unitstep(t-1) ]
+	\label{eq:}
+\end{equation}
+
+\begin{equation*}
+\begin{aligned}
+	\laplace[ \frac{dx}{dt} ] &= -kX(s) + D\left[ \laplace[\unitstep(t)] - \laplace[\unitstep(t-1)] \right]\\
+	sX(s) - x(0) &= -kX(s) + D\left[ \frac{1}{s} - \frac{e^{-s}}{s} \right]\\
+	sX(s) - 0 + kX(s) &= \frac{D}{s} - D\frac{e^{-s}}{s}\\
+	(s+k)X(s) &= \frac{D}{s} - D\frac{e^{-s}}{s}\\
+	X(s) &= \frac{D}{s(s+k)} - D\frac{e^{-s}}{s(s+k)}\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	\frac{D}{s(s+k)} &= \frac{A}{s} + \frac{B}{s+k}\\
+	\frac{D}{s(s+k)} &= \frac{A(s+k)}{s(s+k)} + \frac{Bs}{s(s+k)}\\
+	D &= A(s+k) + Bs\\
+\end{aligned}
+\end{equation*}
+Must be true for any $s$
+
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{equation*}
+	\begin{aligned}
+		s &= 0\\
+		D &= A(0+k) + B(0)\\
+		D &= Ak\\
+		A &= \frac{D}{k}\\
+	\end{aligned}
+	\end{equation*}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{equation*}
+	\begin{aligned}
+		s &= -k\\
+		D &= A(-k+k) + B(-k)\\
+		D &= A(0) - Bk\\
+		D &= -Bk\\
+		B &= -\frac{D}{k}\\
+	\end{aligned}
+	\end{equation*}
+\end{minipage}
+\begin{equation*}
+\begin{aligned}
+	\frac{D}{s(s+k)} &= \frac{A}{s} + \frac{B}{s+k}\\
+	\frac{D}{s(s+k)} &= \frac{D}{ks} - \frac{Dk^{-1}}{s+k}\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	X(s) &= \frac{D}{s(s+k)} - D\frac{e^{-s}}{s(s+k)}\\
+	X(s) &= \frac{Dk^{-1}}{s} - \frac{Dk^{-1}}{s+k} - De^{-s}\left[ \frac{Dk^{-1}}{s} - \frac{Dk^{-1}}{s+k} \right]\\
+	\laplacei[X(s)] &= \laplacei[\frac{Dk^{-1}}{s}] - \laplacei[\frac{Dk^{-1}}{s+k}] - \laplacei[De^{-s}\frac{Dk^{-1}}{s}] - \laplacei[De^{-s}\frac{Dk^{-1}}{s+k}]\\
+	x(t) &= \frac{D}{k}\laplacei[\frac{1}{s}] - \frac{D}{k}\laplacei[\frac{1}{s+k}] - \frac{D^{2}}{k}\laplacei[\frac{e^{-s}}{s}] - \frac{D^{2}}{k}\laplacei[\frac{e^{-s}}{s+k}]\\
+	x(t) &= \frac{D}{k}(1) - \frac{D}{k}(e^{-kt}) - \frac{D^{2}}{k}(1\unitstep(t-1)) - \frac{D^{2}}{k}\left( e^{-kt}\unitstep(t-1) \right)\\
+	x(t) &= \frac{D}{k}\left(1 - e^{-kt} - D\unitstep(t-1) - De^{-kt}\unitstep(t-1) \right)\\
+\end{aligned}
+\end{equation*}
+
+\end{document}

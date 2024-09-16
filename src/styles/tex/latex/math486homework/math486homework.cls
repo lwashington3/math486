@@ -25,6 +25,7 @@
 \RequirePackage[
 	title={\title},
 ]{math486}
+\RequirePackage{minted}
 
 \hypersetup{
 	linkcolor=black
