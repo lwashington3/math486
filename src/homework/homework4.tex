@@ -1,0 +1,87 @@
+%! Author = Len Washington III
+%! Date = 9/6/24
+
+% Preamble
+\documentclass[
+	% author={}, % Remove the percentage sign and add your name within the brackets.
+	number={4},
+	title={Pharmacokinetics}
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\noindent Please review Dawkin's ODE notes, particularly Laplace Transforms, if needed.
+You \textbf{must} include your computer code for any computations and graphs.
+
+\begin{listing}[p]
+	\addanswer{Source-Code}
+	\caption{Source Code for the Graphs}
+	\label{lst:source-code}
+\end{listing}
+
+\begin{problems}
+	\problem Consider the system of ODEs
+	\begin{equation*}
+	\begin{aligned}
+		x' &= -2y + \delta(t-1),\ x(0) = 0\\
+		y' &= -3x = y,\ y(0) = 0
+	\end{aligned}
+	\end{equation*}
+	\begin{problems}
+		\subproblem Solve the system using \textbf{Laplace Transforms}.
+		Clearly show \textbf{all} steps. \addanswer{Problem-1a}
+		\subproblem Graph the solutions $x(t)$ and $y(t)$ from $t=0$ to $t=7$ on the same axes and label each curve. \addanswer{Problem-1b}
+	\end{problems}
+	\problem A pharmacokinetics model with one compartment (plasma) is used to model a drug that is administered with dose $D$ at $t=0$.
+	A booster of dose $D/3$ is given at $t=5$.
+	The clearance rate from the compartment is $k=1/4$.
+	Define $x(t)$ be the amount of drug in the plasma at time $t$.
+	\begin{problems}
+		\subproblem Derive a differential equation models for $x(t)$ with the proper initial condition.
+		You must use Dirac delta functions in your model. \addanswer{Problem-2a}
+		\subproblem Use Laplace transforms to solve the ODE. \addanswer{Problem-2b}
+		\subproblem Plot $x(t)$ from $t=0$ to $t=10$ with $D=4$. \addanswer{Problem-2c}
+	\end{problems}
+	\problem Consider a one compartment model for the amount $x(t)$, a drug in the plasma with $x(0) = 0$.
+	Assume the elimination rate is $k > 0$.
+	The drug is administered using intravenous infusion (IV) for 2 hours but the amount of drug in the IV (drip rate) is reduced in time by a factor of $e^{-t}$.
+	The drug input $I(t)$ is given by
+	\[ I(t) = \left\{ \begin{array}{ll}
+		Ae^{-t}, 0 \leq t < 2,
+		0, t \geq 2.
+	\end{array} \right. \]
+	Here time is in hours.
+	\begin{problems}
+		\subproblem Set up a differential equation for $x(t)$ by converting $I(t)$ to a single line function using the Heaviside step function. \addanswer{Problem-3a}
+		\subproblem Use Laplace transform to solve the ODE assuming $x(0) = 0$.
+		Show all details.\addanswer{Problem-3b}
+		\subproblem The total amount of drug that is removed or eliminated is equal to $k \int_{0}^{\infty} x(t)dt $.
+		Verify that all the drug is removed. \addanswer{Problem-3c}
+		\subproblem Plot $x(t)$ for $0 < t < 8$ is the half-life of the drug in the blood is 5 hours, and $A=3$. \addanswer{Problem-3d}
+	\end{problems}
+	\problem A maintenance drug such as Lipitor is taken daily for a long period of time.
+	It reduces cholesterol levels and lowers the risk of a heart attack.
+	A single compartment pharmacokinetics model is used to track the concentration of the drug in the plasma.
+	Suppose each dose has concentration $C$ and it taken at fixed time intervals $\tau$.
+	The elimination rate for the compartment is $k$.
+	\begin{problems}
+		\subproblem Derive difference equations for the sequence of local maxima, $u_{n}$, and local minima, $v_{n}$, assuming the concentration in the blood is 0 just before the first dose. \addanswer{Problem-4a}
+		\subproblem Solve the equations in~\ref{prb:4a}.
+		Compute the limits of the sequences as $n\rightarrow\infty$.
+		These need to be inside the therapeutic window for the maintenance drug. \addanswer{Problem-4b}
+		\subproblem The data for the drug is:
+		\begin{itemize}
+			\item half-life is plasma in 2 hours.
+			\item $C = 150 \mbox{mg} / 15.8 \mbox{L}$.
+			Here the volume of distribution is $15.8\mbox{L}$, which is not realistic.
+		\end{itemize}
+		Find the smallest does interval $\tau$ such that the drug remains in the therapeutic window  $0.5 \mbox{mg} / \mbox{L} < conc. < 10.3 \mbox{mg} / \mbox{L}$.
+		The value of $\tau$ must be an integer to be useful for the patient.
+		\addanswer{Problem-4c}
+	\end{problems}
+\end{problems}
+
+\end{document}
