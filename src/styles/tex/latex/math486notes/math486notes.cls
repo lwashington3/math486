@@ -15,6 +15,8 @@
 }
 
 \DeclareStringOption{date}
+\DeclareStringOption{month}
+\DeclareStringOption{day}
 \DeclareStringOption[]{title}
 
 \ProcessKeyvalOptions*
@@ -23,6 +25,8 @@
 	title={{\mathnotes@date\ Notes}},
 	date={\mathnotes@date}
 ]{math486}
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
 
 \setlength{\parindent}{0in}
 
@@ -32,3 +36,17 @@
 {}
 {0em}
 {}
+
+\let\begindocument\document
+\let\enddoc\enddocument
+
+\renewenvironment{document}
+{
+	\begindocument
+	%<*2024-\mathnotes@month-\mathnotes@date>
+}{
+	%</2024-\mathnotes@month-\mathnotes@date>
+	\enddoc
+}
+
+\newcommand{\testme}[2]{\ExecuteMetaData[#1-#2-2024]{2024-#1-#2}}

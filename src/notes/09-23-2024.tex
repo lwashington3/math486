@@ -1,0 +1,149 @@
+%! Author = Len Washington III
+%! Date = 9/23/24
+
+% Preamble
+\documentclass[
+	date={September 23{,} 2024},
+	month={09},
+	day={23}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\begin{example}[Multiple Dose Model]
+	$\dots$
+\end{example}
+
+\section{Two Compartment Model}\label{sec:two-compartment-model}
+\[ input \rightarrow x(t) \rightarrow^{k_{1}} y(t) \rightarrow^{k_{2}} \]
+
+System of ODE's
+\begin{equation*}
+\begin{aligned}
+	\frac{dx}{dt} &= -k_{1}x + I(t),\ \ x(0) = 0\\
+	\frac{dy}{dt} &= k_{1}x - k_{2}y,\ \ y(0) = 0\\
+\end{aligned}
+\end{equation*}
+
+\subsection{Methods of Solution for Systems of Equations}\label{subsec:methods-of-solution-for-systems-of-equations}
+\begin{enumerate}[label=(\arabic*)]
+	\item Elimination
+	\item Laplace Transforms
+	\item Matrix methods
+	\begin{itemize}
+		\item eigenvalue problem
+	\end{itemize}
+	\item Numerical methods
+	\begin{itemize}
+		\item Mathematica, Matlab and Python
+	\end{itemize}
+\end{enumerate}
+
+\begin{example}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{dx}{dt} &= x_{1} + 3x_{2},\ \ x_{1}(0) = 5\\
+		\frac{dy}{dt} &= 5x_{1} + 3x_{2},\ \ x_{2}(0) = 1
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		sX_{1}(s) - x_{1}(0) &= \laplace[x_{1}(t)] \sep sX_{2}(s) - x_{2}(0) &= \laplace[x_{2}(t)]\\
+		sX_{1}(s) - x_{1}(0) &= \laplace[x_{1}] + \laplace[3x_{2}] \sep sX_{2}(s) - x_{2}(0) &= \laplace[5x_{1}] + \laplace[3x_{2}]\\
+		sX_{1}(s) - 5 &= X_{1}(s) + 3X_{2}(s) \sep sX_{2}(s) - 1 &= 5X_{1}(s) + 3X_{2}(s)\\
+		sX_{1}(s) - 5 - X_{1}(s) &= 3X_{2}(s) \sep sX_{2}(s) - 1 - 5X_{1}(s) &= 3X_{2}(s)\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		sX_{1}(s) - 5 - X_{1}(s) &= sX_{2}(s) - 1 - 5X_{1}(s)\\
+		sX_{1}(s) + 4X_{1}(s) - sX_{2}(s) &= 4\\
+		(s+4)X_{1}(s) - sX_{2}(s) &= 4\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation}
+	\begin{aligned}
+		\frac{dx}{dt} &= -k_{1}x + D\delta(t),\ \ x(0) = 0\\
+		\frac{dy}{dt} &= k_{1}x - k_{2}y,\ \ y(0) = 0\\
+	\end{aligned}
+	\label{eq:heart}
+	\end{equation}
+	Use Laplace Transforms
+	\begin{equation*}
+	\begin{aligned}
+		X(s) &= \laplace[x(t)] \sep Y(s) &= \laplace[y(t)]\\
+	\end{aligned}
+	\end{equation*}
+	$\laplace[\eqref{eq:heart}]:$
+	\begin{equation*}
+	\begin{aligned}
+		sX(s) - x(0) &= \laplace[-k_{1}x] + \laplace[D\delta(t)] \sep sY(s) - y(0) &= \laplace[k_{1}x] - \laplace[k_{2}y]\\
+		sX(s) - 0 &= -k_{1}X(s) + D(1) \sep sY(s) - 0 &= k_{1}X(s) - k_{2}Y(s)\\
+		sX(s) + k_{1}X(s) &= D \sep sY(s) + k_{2}Y(s) &= k_{1}X(s)\\
+		(s+k_{1})X(s) &= D \sep (s + k_{2})Y(s) &= k_{1}X(s)\\
+		X(s) &= \frac{D}{s+k_{1}} \sep Y(s) &= \frac{k_{1}X(s)}{s + k_{2}}\\
+		& \sep Y(s) &= \frac{Dk_{1}}{(s + k_{2})(s + k_{1})}\\
+		X(s) &= \frac{D}{s+k_{1}} \sep Y(s) &= \frac{Dk_{1}}{(s + k_{2})(s + k_{1})}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{Dk_{1}}{(s+k_{1})(s+k_{2})} &= \frac{A}{s+k_{2}} + \frac{B}{s+k_{1}}\\
+		\frac{Dk_{1}}{(s+k_{1})(s+k_{2})} &= \frac{A(s+k_{1})}{(s+k_{2})(s+k_{1})} + \frac{B(s+k_{2})}{(s+k_{1}(s+k_{2}))}\\
+		Dk_{1} &= A(s+k_{1}) + B(s+k_{2})\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		s &= -k_{1} \sep s &= -k_{2}\\
+		Dk_{1} &= A(-k_{1}+k_{1}) + B(-k_{1}+k_{2}) \sep Dk_{1} &= A(-k_{2}+k_{1}) + B(-k_{2}+k_{2})\\
+		Dk_{1} &= A(0) + B(k_{2} - k_{1}) \sep Dk_{1} &= A(k_{1} - k_{2}) + B(0)\\
+		Dk_{1} &= B(k_{2} - k_{1}) \sep Dk_{1} &= A(k_{1} - k_{2})\\
+		B &= \frac{Dk_{1}}{k_{2} - k_{1}} \sep A &= \frac{Dk_{1}}{k_{1} - k_{2}}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		X(s) &= \frac{D}{s+k_{1}} \sep Y(s) &= \frac{Dk_{1}}{k_{2} - k_{1}} + \frac{Dk_{1}}{k_{1} - k_{2}}\\
+		x(t) &= \laplacei[\frac{D}{s+k_{1}}] \sep y(t) &= \laplacei[\frac{Dk_{1}}{k_{2} - k_{1}}] + \laplacei[\frac{Dk_{1}}{k_{1} - k_{2}}]\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{Lead Uptake Model}\label{sec:lead-uptake-model}
+\begin{itemize}
+	\item Excess of lead in body leads to lead (Pb) poisoning.
+	\item Symptoms of Pb poisoning
+	\begin{description}
+		\item[Adults] GI tract -- vomiting pain
+		\item[Children] Serious -- central nervous system disorders, anemia
+	\end{description}
+	\item Pb in the environment:
+	\begin{description}
+		\item[Natural] small
+		\item[Human-made]~
+		\begin{itemize}
+			\item gasoline
+			\item paint
+			\item waterpipes
+			\item make-up
+			\item plastics
+		\end{itemize}
+	\end{description}
+	\item How does Pb enter the body?
+	\begin{itemize}
+		\item Inhalation
+		\item Eat or drinking
+	\end{itemize}
+	\item How is Pb removed from the body?
+	\begin{itemize}
+		\item urine
+		\item hair, nails, sweat
+	\end{itemize}
+\end{itemize}
+
+
+\end{document}
