@@ -15,6 +15,7 @@
 }
 
 \DeclareStringOption{number}
+\DeclareBoolOption[true]{answers}
 \DeclareStringOption[]{title}
 
 \ProcessKeyvalOptions*
@@ -25,7 +26,6 @@
 \RequirePackage[
 	title={\title},
 ]{math486}
-\RequirePackage{minted}
 
 \hypersetup{
 	linkcolor=black
@@ -81,4 +81,14 @@
 \newcommand{\answerfile}{homework\mathhomework@number_answers}
 \newcommand{\addanswer}[1]{% Input the section name
 \begin{answer}\ExecuteMetaData[\answerfile]{#1}\end{answer}
+}
+
+\RequirePackage{minted}
+\newcommand{\python}[1]{%
+	\begin{listing}[H]%
+		\inputminted{python}{#1}
+%		\inputminted{python}{homework\mathhomework@number/problem\number\value{problemsi}\alph{problemsii}.py}% TODO: Find out how to check which level it's in
+		\caption{Source Code for Problem \number\value{problemsi}\alph{problemsii}.}%
+		\label{lst:prb-\number\value{problemsi}\alph{problemsii}}%
+	\end{listing}
 }
