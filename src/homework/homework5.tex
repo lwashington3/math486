@@ -1,0 +1,73 @@
+%! Author = Len Washington III
+%! Date = 10/2/24
+
+% Preamble
+\documentclass[
+	% author={}, % Remove the percentage sign and add your name within the brackets.
+	number={5},
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{problems}
+	\problem Strep throat, sinus infections, etc. usually require an antibiotic to help bring the infection under control.
+	Zithromax (azithromycin) is often prescribed for these infections as a Z Pak containing 6 pills.
+	Suppose we design a two compartment model for Zithromax with the first compartment being the GI tract $x(t)$ and the second compartment being the blood stream, $y(t)$ with the following system of ODE's:
+	\begin{equation*}
+	\begin{aligned}
+		x' &= -k_{1}x + I(t)\\
+		y' &= k_{1}x - k_{2}y\\
+	\end{aligned}
+	\end{equation*}
+	where $I(t)$ is the input of the pills.
+	The initial amount in each compartment equal to 0.
+	The dosing regimen for a Z Pak is 2 pills the first day and then 1 pill for the following 4 days (5 day regimen).
+	The time between the doses is 1 day and each pill delivers $D$ units of the drug.
+	\begin{problems}
+		\subproblem Find the amount of the drug in each compartment from days 1 to 8.
+		Model each pill dose by a Dirac delta function spiked at the appropriate time. \addanswer{Problem-1a}
+		\subproblem If each pill is 400mg, $k_{1} = 0.9$, and half-life of the drug in the blood is 2.3 days, graph $x(t)$ and $y(t)$ on the same axes from day 1 to day 8. \addanswer{Problem-1b}
+	\end{problems}
+	\problem Consider a system of ODE's with initial conditions.
+	\begin{equation}
+		\frac{d\vec{x}}{dt} = A\vec{x} + \vec{b} = \left[ \begin{array}{cc}
+			-2 & 1\\
+			1 & -2
+		\end{array} \right]\vec{x} + \left[ \begin{array}{c}
+			3\\
+			-1
+		\end{array} \right], \vec{x}(0) = \left[ \begin{array}{c}
+			2\\
+			2
+		\end{array} \right]
+		\label{eq:1}
+	\end{equation}
+	\begin{problems}
+		\subproblem \addanswer{Problem-2a}
+		\subproblem \addanswer{Problem-2b}
+		\subproblem \addanswer{Problem-2c}
+		\subproblem \addanswer{Problem-2d}
+		\subproblem
+		\begin{problems}
+			\subsubproblem \addanswer{Problem-2e-i}
+			\subsubproblem \addanswer{Problem-2e-ii}
+			\subsubproblem \addanswer{Problem-2e-iii}
+		\end{problems}
+	\end{problems}
+	\problem
+	\begin{problems}
+		\subproblem \addanswer{Problem-3a}
+		\subproblem \addanswer{Problem-3b}
+		\begin{problems}
+			\subsubproblem \addanswer{Problem-3b-i}
+			\subsubproblem \addanswer{Problem-3b-ii}
+			\subsubproblem \addanswer{Problem-3b-iii}
+		\end{problems}
+		\subproblem \addanswer{Problem-3c}
+	\end{problems}
+\end{problems}
+
+\end{document}

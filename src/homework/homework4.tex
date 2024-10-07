@@ -21,7 +21,7 @@ You \textbf{must} include your computer code for any computations and graphs.
 	\begin{equation*}
 	\begin{aligned}
 		x' &= -2y + \delta(t-1),\ x(0) = 0\\
-		y' &= -3x = y,\ y(0) = 0
+		y' &= -3x - y,\ y(0) = 0
 	\end{aligned}
 	\end{equation*}
 	\begin{problems}
@@ -44,7 +44,7 @@ You \textbf{must} include your computer code for any computations and graphs.
 	The drug is administered using intravenous infusion (IV) for 2 hours but the amount of drug in the IV (drip rate) is reduced in time by a factor of $e^{-t}$.
 	The drug input $I(t)$ is given by
 	\[ I(t) = \left\{ \begin{array}{ll}
-		Ae^{-t}, 0 \leq t < 2,
+		Ae^{-t}, 0 \leq t < 2,\\
 		0, t \geq 2.
 	\end{array} \right. \]
 	Here time is in hours.
@@ -54,7 +54,7 @@ You \textbf{must} include your computer code for any computations and graphs.
 		Show all details.\addanswer{Problem-3b}
 		\subproblem The total amount of drug that is removed or eliminated is equal to $k \int_{0}^{\infty} x(t)dt $.
 		Verify that all the drug is removed. \addanswer{Problem-3c}
-		\subproblem Plot $x(t)$ for $0 < t < 8$ is the half-life of the drug in the blood is 5 hours, and $A=3$. \addanswer{Problem-3d}
+		\subproblem Plot $x(t)$ for $0 < t < 8$ if the half-life of the drug in the blood is 5 hours, and $A=3$. \addanswer{Problem-3d}
 	\end{problems}
 	\problem A maintenance drug such as Lipitor is taken daily for a long period of time.
 	It reduces cholesterol levels and lowers the risk of a heart attack.
@@ -68,11 +68,11 @@ You \textbf{must} include your computer code for any computations and graphs.
 		These need to be inside the therapeutic window for the maintenance drug. \addanswer{Problem-4b}
 		\subproblem The data for the drug is:
 		\begin{itemize}
-			\item half-life is plasma in 2 hours.
+			\item half-life is plasma is 2 hours.
 			\item $C = 150 \mbox{mg} / 15.8 \mbox{L}$.
 			Here the volume of distribution is $15.8\mbox{L}$, which is not realistic.
 		\end{itemize}
-		Find the smallest does interval $\tau$ such that the drug remains in the therapeutic window  $0.5 \mbox{mg} / \mbox{L} < conc. < 10.3 \mbox{mg} / \mbox{L}$.
+		Find the smallest dose interval $\tau$ such that the drug remains in the therapeutic window  $0.5 \mbox{mg} / \mbox{L} < conc. < 10.3 \mbox{mg} / \mbox{L}$.
 		The value of $\tau$ must be an integer to be useful for the patient.
 		\addanswer{Problem-4c}
 	\end{problems}

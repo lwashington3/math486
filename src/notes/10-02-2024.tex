@@ -1,0 +1,98 @@
+%! Author = Len Washington III
+%! Date = 10/2/24
+
+% Preamble
+\documentclass[
+	date={October 2{,} 2024},
+	month={10},
+	day={2}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\section{Alcohol Models}\label{sec:alcohol-models}
+Ingested through drinks -- beer, wine, mixed drinks.
+The alcohol in these drinks is ethanol.
+
+Why do we care?
+\begin{enumerate}[label=(\arabic*)]
+	\item What are the long term effects of alcohol -- good and bad
+	\item links to diseases
+	\item law enforcement - DUI laws
+\end{enumerate}
+
+How do we measure alcohol in the body?
+
+BAC -- Blood Alcohol Concentration, [BAC] $= \frac{g}{100 mL}$.
+BAC = $\frac{0.08 g}{100 mL} = 0.08\%$, BAC > 0.08\% is too impaired to drive in most states\\
+
+0.1\% is drunk (dizzy)\\
+0.4\% will most likely be a comma
+
+At a traffic stop, a breathalyzer can indirectly approximate your alcohol concentration (Br-AC) through your breath.
+\begin{equation}
+	BAC = BrAC \times 2250 \pm 46
+	\label{eq:bac}
+\end{equation}
+
+Factors that determine BAC:
+\begin{itemize}
+	\item \# of drinks
+	\item Time between drinks
+	\item gender
+	\item body mass
+	\item height
+	\item stomach contents
+\end{itemize}
+
+liver -- metabolizes alcohol into acetaldehyde $\rightarrow$ acetate
+
+\section{Widmark Model}\label{sec:widmark-model}
+\begin{equation}
+	\begin{aligned}
+		\frac{d}{dt}\mbox{BAC} &= -\beta,\ \ \ \mbox{BAC}(0) = \frac{D}{V_{d}}\\
+		\mbox{BAC}(t) &= -\beta t + k\\
+		\mbox{BAC}(t) &= -\beta t + \frac{D}{V_{d}}\\
+		V_{d} &= Wr \mbox{ where W is the weight of the person, r is with widmark (fudge) factor}\\
+	\end{aligned}
+	\label{eq:widmark}
+\end{equation}
+In 2000, $r(\mbox{men}) = 0.31 - 0.0048W + 0.0046H$ where $H$ is height
+
+Flaws:
+\begin{enumerate}
+	\item BAC goes $< 0$
+	\item no timing of drinks
+	\item only one compartment
+	\item liver metabolizes the ethanol
+\end{enumerate}
+
+\section{Wagner Model}\label{sec:wagner-model}
+$CL = \frac{V_{max}}{K_{m} + \mbox{BAC}}$
+
+\section{Pieters' Model}\label{sec:pieters-model}
+3 compartments, stomach, intestine, central (blood stream)
+
+\section{Data Fitting}\label{sec:data-fitting}
+Two types of problems:
+\subsection{Model with a formula}\label{subsec:model-with-a-formula}
+$y = f(x, \theta_{1}, \theta_{2}, \dots, \theta_{j-1})$ with $\theta_{j}$ parameters.
+
+What values of $\theta_{j}$ best ``produce'' the data
+
+\subsection{Model with no formula}\label{subsec:model-with-no-formula}
+generate an ad hoc formula within a neural network
+
+\section{Ordinary Least Squares (OLS)}\label{sec:ordinary-least-squares-(ols)}
+Linear problems
+
+\begin{example}
+	Formula $y = mx+b$ where $m$ and $m$ are parameters.
+
+	Given 2 data points, find $m$ and $b$.
+\end{example}
+
+\end{document}
