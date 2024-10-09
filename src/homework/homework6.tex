@@ -1,0 +1,98 @@
+%! Author = Len Washington III
+%! Date = 10/2/24
+
+% Preamble
+\documentclass[
+	% author={}, % Remove the percentage sign and add your name within the brackets.
+	number={6},
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{problems}
+	\problem The following data is modeled by a power law.
+	\begin{equation}
+		y = at^{c}
+		\label{eq:1}
+	\end{equation}
+	\begin{table}[H]
+		\centering
+		\label{tab:1}
+		\begin{tabular}{c|c}
+			$t$ & $y$\\
+			\hline
+			1 & 2\\
+			1 & 4\\
+			2 & 5\\
+			5 & 10\\
+		\end{tabular}
+	\end{table}
+	\begin{problems}
+		\subproblem Derive a linear model to replace~\eqref{eq:1}. \addanswer{Problem-1a}
+		\subproblem Write a linear system $Ax=b$ with $x$ related to $a$ and $c$ using the data points. \addanswer{Problem-1b}
+		\subproblem State the normal equations then solve, you can use a computer for the calculation. \addanswer{Problem-1c}
+		\subproblem Plot the data points and the continuous function~\eqref{eq:1} using the computed values of $a$ and $c$ on the same graph. \addanswer{Problem-1d}
+	\end{problems}
+	\problem The drug concentration in the plasma is modeled by the equation
+	\begin{equation}
+		y = ate^{ct},\ \ t \geq 0.
+		\label{eq:2}
+	\end{equation}
+	The following data was collected for the drug norfluoxetine in a subject:
+	\begin{table}[H]
+		\centering
+		\label{tab:2}
+		\begin{tabular}{c|c}
+			hour & conc. (mg/ml)\\
+			\hline
+			1 & 8.0\\
+			2 & 12.3\\
+			3 & 15.5\\
+			4 & 16.8\\
+			5 & 17.1\\
+			6 & 15.8\\
+			7 & 15.2\\
+			8 & 14.0\\
+		\end{tabular}
+	\end{table}
+	\begin{problems}
+		\subproblem Derive a linear model to replace~\eqref{eq:2}. \addanswer{Problem-2a}
+		\subproblem Write a linear system $Ax=b$ with $x$ related to $a$ and $c$ using the data points. \addanswer{Problem-2b}
+		\subproblem State the normal equations then solve, you can use a computer for the calculation. \addanswer{Problem-2c}
+		\subproblem Plot the data points and the continuous function~\eqref{eq:2} using the computed values of $a$ and $c$ on the same graph. \addanswer{Problem-2d}
+	\end{problems}
+	\problem The table below gives car sales data starting at 1950 (year 0) in 5 year increments.
+	The data is modeled by the exponential function
+	\begin{equation}
+		y = c_{1}e^{c_{2}t}
+		\label{eq:3}
+	\end{equation}
+	\begin{table}[H]
+		\centering
+		\label{tab:3}
+		\begin{tabular}{c|c}
+			year & cars ($\times 10^{6}$)\\
+			\hline
+			0 & 53.05\\
+			5 & 74.04\\
+			10 & 98.31\\
+			15 & 139.78\\
+			20 & 193.48\\
+			25 & 260.20\\
+			30 & 320.39\\
+		\end{tabular}
+	\end{table}
+	\begin{problems}
+		\subproblem Derive a linear model to replace~\eqref{eq:3}. \addanswer{Problem-3a}
+		\subproblem Write a linear system $Ax=b$ with $x$ related to $c_{1}$ and $c_{2}$ using the data points. \addanswer{Problem-3b}
+		\subproblem State the normal equations then solve, you can use a computer for the calculation. \addanswer{Problem-3c}
+		\subproblem Plot the data points and the continuous function~\eqref{eq:3} using the computed values of $c_{1}$ and $c_{2}$ on the same graph. \addanswer{Problem-3d}
+		\subproblem Compute the RMSE in the linear model in~\ref{prb:3a}. \addanswer{Problem-3e}
+		\subproblem Compute the RMSE using the exponential model in~\eqref{eq:3}. \addanswer{Problem-3f}
+		\subproblem Explain any differences in~\ref{prb:3e} and~\ref{prb:3f}. \end{problems}
+\end{problems}
+
+\end{document}
