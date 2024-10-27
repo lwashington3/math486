@@ -1,0 +1,192 @@
+%! Author = Len Washington III
+%! Date = 10/21/24
+
+% Preamble
+\documentclass[
+	date={October 21{,} 2024},
+	month={10},
+	day={21}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+Find conservation laws, if possible.
+i.e. combination of variables that are constant in time.
+
+One method: Combine
+ODE's so
+\begin{equation*}
+\begin{aligned}
+	\frac{d}{dt}(+\dots+) &= 0\\
+	+\dots+ &= \mbox{constant}\\
+\end{aligned}
+\end{equation*}
+
+\begin{equation}
+	\begin{aligned}
+		\left\{ \begin{array}{ll}
+			\frac{dA}{dt} = -k_{1}Ax, & A(0) = A_{0}\\
+			\frac{dx}{dt} = -k_{1}Ax- k_{2}zx & x(0) = x_{0}\\
+			\frac{dz}{dt} = k_{1}Ax - k_{2}xz & z(0) = 0\\
+			\frac{dp}{dt} = k_{2}xz & p(0) = 0\\
+		\end{array} \right.
+	\end{aligned}
+	\label{eq:current-conservation}
+\end{equation}
+\begin{equation*}
+\begin{aligned}
+	\frac{dA}{dt} + \frac{dp}{dt} + \frac{dz}{dt} &= \frac{d}{dt}(A + P + Z)\\
+	&=0
+	A(t) + P(t) + Z(t) &= \mbox{constant for all time}
+\end{aligned}
+\end{equation*}
+What is the constant?
+Set $t=0$, $A(0)=A_{0}$, $z(0)=0$, $p(0)=0$:
+\begin{equation*}
+\begin{aligned}
+	A(t) + P(t) + Z(t) &= A_{0}\\
+	P(t) &= A_{0} - A(t) - Z(t)
+\end{aligned}
+\end{equation*}
+
+Eliminate $P$ from~\eqref{eq:current-conservation}
+\begin{equation}
+	\begin{aligned}
+		\left\{ \begin{array}{ll}
+					\frac{dA}{dt} = -k_{1}Ax, & A(0) = A_{0}\\
+					\frac{dx}{dt} = -k_{1}Ax- k_{2}zx & x(0) = x_{0}\\
+					\frac{dz}{dt} = k_{1}Ax - k_{2}xz & z(0) = 0\\
+		\end{array} \right.
+	\end{aligned}
+	\label{eq:current-conservation-2}
+\end{equation}
+Look for other conservation laws
+
+\begin{equation*}
+\begin{aligned}
+	\frac{d}{dt} (2A - x + z) &= 0\\
+	2A(t) - x(t) + z(t) &= \mbox{constant for all time}\\
+	2A(t) - x(t) + z(t) &= 2A_{0} - x_{0}\\
+	x(t) &= 2A(t) + z(t) - 2A_{0} + x_{0}\\
+\end{aligned}
+\end{equation*}
+2 equations and 2 unknowns
+
+\begin{example}[Simple reaction modeling]
+	Reversible conformational change
+	1st order
+	\begin{equation}
+		\left\{ \begin{array}{ll}
+			\frac{dA}{dt} = -k_{1}A + k_{-1}B, & A(0) = A_{0}\\
+			\frac{dB}{dt} = k_{1}B - k_{-1}B, & B(0) = B_{0}\\
+		\end{array} \right.
+		\label{eq:example-initial-concentrations}
+	\end{equation}
+	What to do?
+	By luck, first order reactions have linear systems with constant coefficients:
+	\[ \frac{d}{dt}\left( \left[ \begin{array}{c}
+		A\\
+		B
+	\end{array} \right] \right) = M\left[ \begin{array}{c}
+		A\\
+		B
+	\end{array} \right] \]
+	Assume: $\left[ \begin{array}{c}
+		A\\
+		B
+	\end{array} \right] = \left[ \begin{array}{c}
+		v_{1}\\
+		v_{2}
+	\end{array} \right]e^{\lambda t}$
+	which leads to the eigenvalue problem
+	\begin{equation*}
+	\begin{aligned}
+		0 &= \bigg|\begin{array}{cc}
+			-k_{1} - \lambda & k_{-1}\\
+			k_{1} & -k_{-1} - \lambda\\
+		\end{array}\bigg|\\
+		&= (-k_{1} - \lambda)(-k_{-1} - \lambda) - (k_{-1})(k_{1})
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\lambda_{1} &= 0 \sep \lambda_{2} &= -(k_{1} + k_{-1})
+	\end{aligned}
+	\end{equation*}
+	If reactions are more complicated (nonlinear systems): find conservative laws
+\end{example}
+
+\begin{example}[Dimerization of 2 monomers]
+	Kinetic equations:
+	\begin{equation}
+		\begin{aligned}
+			\frac{dA}{dt} &= -2k_{1}A^{2} + 2k_{-1}C \sep A(0) &= A_{0}\\
+			\frac{dC}{dt} &= -k_{-1}C + k_{1}A^{2} \sep C(0) &= 0
+		\end{aligned}
+		\label{eq:dimerization-kinetics-equations}
+	\end{equation}
+	Given $[A] = \frac{M}{L^{3}}$, $[C]=\frac{M}{L^{3}}$, $[A_{0}] = \frac{M}{L^{3}}$, $[t] = T$:
+	find $k$:
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \frac{dA}{dt} \right] &= \left[ -2k_{1}A^{2} \right] + \left[ 2k_{-1}C \right]\\
+		\frac{ML^{-3}}{T} &= \left[ k_{1} \right] \left[ A^{2} \right] + \left[ k_{-1} \right] \left[ C \right]\\
+		\frac{ML}{L^{3}T} &= \left[ k_{1} \right] \left( \frac{M}{L^{3}} \right)^{2} + \left[ k_{-1} \right] \left( \frac{M}{L^{3}} \right)^{2}\\
+		\frac{ML}{L^{3}T} &= \left[ k_{1} \right] \frac{M^{2}}{L^{6}} + \left[ k_{-1} \right]\frac{M^{2}}{L^{6}}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{ML}{L^{3}T} &= \left[ k_{1} \right] \frac{M^{2}}{L^{6}}  \sep
+		\frac{ML}{L^{3}T} &= \left[ k_{-1} \right]\frac{M^{2}}{L^{6}}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		A &= f(t, k_{1}, k_{-1}, A_{0}) \sep C &= g(t, k_{1}, k_{-1}, A_{0}) \\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		[A] = [t]^{a}[k_{1}]^{b}[k_{-1}]^{c}[A_{0}]^{d}\\
+		\frac{M}{L^{3}} = T^{a}\left( L^{3}M^{-1}T^{-1} \right)^{b}T^{-1}^{c}\left(ML^{-3}\right)^{d}\\
+		ML^{-3} = T^{a} L^{3b}M^{-b}T^{-b} T^{-c} M^{d}L^{-3d}\\
+		M^{1}L^{-3}T^{0} = M^{-b+d}L^{3b-3d}T^{a-b-c}\\
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\left[ \begin{array}{cccc}
+			1 & -1 & -1 & 0\\ % T
+			0 & 3 & 0 & -3\\ % L
+			0 & -1 & 0 & 1\\ % M
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\frac{dA}{dt} + 2\frac{dC}{dt} &= 0\\
+		A(t) + 2C(t) &= A_{0} + 0\\
+	\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section[Michaelis-Menton Kinetics]{Leonor Michaelis - Maud Menton Kinetics}\label{sec:michaelis-menton-kinetics}
+
+MM Kinetics -- rate is used frequently instead of 1st order $kx$ terms.
+Where does it come from?
+
+Prototype in biological setting.
+How do bacteria consume organic substances (e.g. glucose)?
+
+\begin{equation*}
+\begin{aligned}
+	c + x_{0} &\leftrightarrows^{k_{-1}}_{k_{1}} x_{1}\\
+	x_{1} & \rightarrow^{k_{2}} p + x_{0}
+\end{aligned}
+\end{equation*}
+
+\end{document}

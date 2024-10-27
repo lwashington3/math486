@@ -1,17 +1,17 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Homework 6" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="Homework">
+  <configuration default="false" name="October 21, 2024 Notes" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" folderName="October Notes">
     <texify>
       <compiler>PDFLATEX</compiler>
       <compiler-path />
       <sumatra-path />
       <pdf-viewer>NONE</pdf-viewer>
       <viewer-command>pdfopener</viewer-command>
-      <compiler-arguments>--shell-escape</compiler-arguments>
+      <compiler-arguments />
       <envs />
       <before-run-command />
-      <main-file>$PROJECT_DIR$/src/homework/homework6.tex</main-file>
-      <output-path>$PROJECT_DIR$/out/homework</output-path>
-      <auxil-path>$PROJECT_DIR$/auxil/homework</auxil-path>
+      <main-file>$PROJECT_DIR$/src/notes/10-21-2024.tex</main-file>
+      <output-path>$PROJECT_DIR$/out/notes</output-path>
+      <auxil-path>$PROJECT_DIR$/auxil/notes</auxil-path>
       <compile-twice>true</compile-twice>
       <output-format>PDF</output-format>
       <latex-distribution>TEXLIVE</latex-distribution>

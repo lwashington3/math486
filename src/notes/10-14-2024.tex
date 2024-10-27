@@ -1,0 +1,129 @@
+%! Author = Len Washington III
+%! Date = 10/14/24
+
+% Preamble
+\documentclass[
+	date={October 14{,} 2024},
+	month={10},
+	day={14}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\section{Chemical Kinetics}\label{sec:chemical-kinetics}
+Chemical reactions, well-stirred (no diffusion)
+
+Reactions occur due ot collision between the molecules
+\[ A + B \rightarrow^{k} C \]
+where $k$ is the rate.
+
+How does the reaction proceed -- \emph{to track!}
+Use concentration of the chemicals
+
+Notation: $A(t)$ = concentration of $A$
+
+$[A] = \frac{\mbox{moles}}{\mbox{concentration}^{3}}$
+
+\begin{equation}
+	\frac{dA}{dt} = \frac{dB}{dt} = -\frac{dC}{dt}
+	\label{eq:reaction-rate}
+\end{equation}
+
+\section{Simple Reactions}\label{sec:simple-reactions}
+\subsection{1st order: $A \rightarrow^{k} B$ (radioactive decay)}\label{subsec:1st-order-reaction}
+\begin{equation*}
+\begin{aligned}
+	\frac{dA}{dt} &\propto A\\
+	\frac{dA}{dt} &= kA^{1}\\
+	A &= ce^{-kt}\\
+	\ln A &= -kt + c
+\end{aligned}
+\end{equation*}
+
+\subsection{2nd order: $A + A \rightarrow^{k} B$}\label{subsec:2nd-order-reaction}
+\begin{equation*}
+\begin{aligned}
+	2A &\rightarrow^{k} B\\
+	\frac{dA}{dt} &= -2kA^{2}\\
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+	4\mbox{Li} + \mbox{O}_{2} \rightarrow 2\mbox{Li}_{2}\mbox{O}
+\end{aligned}
+\end{equation*}
+The stoicheiometric coefficients are 4, 1, and 2.
+
+Goal: Track concentrations of chemicals in time (similar to drug care)
+
+\section{Law of Mass Action}\label{sec:law-of-mass-action}
+\begin{enumerate}[label=\arabic*)]
+	\item The rate $r$ of the reaction is proportional to the product of the reactant concentrations, with each concentration raised to the power equal to is respective stoichiometric coefficient.
+	\item The rate of change of the concentration of each species in the reaction is the product of its stoichiometric coefficients with the rate of the reaction adjusted for sign ($-$ for reactant, $+$ for product).
+	\item For a system of reactions,
+	\begin{equation}
+		\alpha A + \beta B \rightarrow^{k} \gamma C + \delta D\\
+		\label{eq:law-of-mass-action}
+	\end{equation}
+\end{enumerate}
+Using~\eqref{eq:law-of-mass-action}:
+\begin{equation*}
+\begin{aligned}
+	\frac{dA}{dt} &= -\alpha r\\
+				  &= -\alpha k A^{\alpha} B^{\beta}\\
+	\frac{dB}{dt} &= -\beta k A^{\alpha} B^{\beta}\\
+	\frac{dC}{dt} &= \gamma k A^{\alpha} B^{\beta}\\
+	\frac{dD}{dt} &= \delta k A^{\alpha} B^{\beta}\\
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+	A + 2x \rightarrow^{k} P \Rightarrow r = kA^{1}x^{2}
+\end{aligned}
+\end{equation*}
+This is highly unlikely given that the reaction would need 2 $x$'s to come into contact with an $A$ at the same time.
+
+\begin{center}
+	Reaction may proceed in elementary steps!
+\end{center}
+
+True mechanism
+\begin{equation*}
+\begin{aligned}
+	\left\{ \begin{array}{l}
+		A + x \rightarrow^{k_{1}} Z\\
+		Z + x \rightarrow^{k_{2}} p\\
+	\end{array} \right.
+\end{aligned}
+\end{equation*}
+where $z$ is an intermediate complex!
+This mechanism only involves binary collisions.
+
+\begin{equation*}
+\begin{aligned}
+	\mbox{Law of mass Action } \Rightarrow
+	\left\{ \begin{array}{l}
+		\frac{dA}{dt} = -k_{1}Ax\\
+		\frac{dx}{dt} = -k_{1}Ax- k_{2}zx \\
+		\frac{dz}{dt} = k_{1}Ax - k_{2}xz\\
+		\frac{dP}{dt} = k_{2}xz\\
+	\end{array} \right.
+\end{aligned}
+\end{equation*}
+
+4 ODE's -- nonlinear (hard)
+
+Initial conditions: $A(0)=A_{0}$, $x(0) = x_{0}$, $z(0) = 0$, $P(0) = 0$.
+
+How do we expect the concentration to change in time.
+
+How to analyze a nonlinear, system of ODE's.
+
+Strategy: Reduce the number of equations: \textbf{compression}.
+
+\end{document}
