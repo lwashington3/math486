@@ -3,8 +3,8 @@
 
 % Preamble
 \documentclass[
-	% author={}, % Remove the percentage sign and add your name within the brackets.
-	number={7},
+    % author={}, % Remove the percentage sign and add your name within the brackets.
+    number={7},
 ]{math486homework}
 
 % Document
@@ -13,22 +13,52 @@
 \maketitle
 
 \begin{problems}
-	\problem Consider the irreversible chemical reaction: $A \rightarrow^{k_{1}} B \rightarrow^{k_{2}} C$.
-	\begin{problems}
-		\subproblem Derive the system of differential equations for the concentrations $A = A(t)$, $B = B(t)$, and $C = C(t)$ with initial conditions $A(0) = A_{0}$, $B(0) = 0$, and $C(0) = 0$.
-		\subproblem Find a conservation law that replaces the need for the $dC/dt$ equation.
-		\subproblem Solve the equations in~\ref{prb:1a} for $A$ and $B$ then use the conservation law to find $C$.
-		\subproblem If $k_{1} = k_{2} = k$, solve for $A$, $B$, and $C$.
-		\subproblem If $k_{1} = k_{2} = k$, find the maximum amount of $B$ that is produced.
-	\end{problems}
-	\problem Consider the dimerization to two monomers example from class
-	\[ A + A \leftrightarrows^{k_{-1}}_{k_{1}} C \]
-	\begin{problems}
-		\subproblem Derive the system of differential equations for the concentrations $A = A(t)$ and $C = C(t)$ with initial conditions $A(0) = A_{0}$ and $C(0) = 0$.
-		\subproblem Find a conservation law that replaces the need for the $dC/dt$ equation and derive the equation for $A(t)$.
-		\subproblem If $k_{1} = k_{2} = k$ and $A_{0} = 1$, find the steady-state values for $A(t)$ and $C(t)$, i.e. limits as $t \rightarrow \infty$.
-	\end{problems}
-	\subproblem
+    \problem Consider the irreversible chemical reaction: $A \stackrel{k_{1}}{\rightarrow} B \stackrel{k_{2}}{\rightarrow} C$.
+    \begin{problems}
+       \subproblem Derive the system of differential equations for the concentrations $A = A(t)$, $B = B(t)$, and $C = C(t)$ with initial conditions $A(0) = A_{0}$, $B(0) = 0$, and $C(0) = 0$. \addanswer{Problem-1a}
+       \subproblem Find a conservation law that replaces the need for the $dC/dt$ equation. \addanswer{Problem-1b}
+       \subproblem Solve the equations in~\ref{prb:1a} for $A$ and $B$ then use the conservation law to find $C$. \addanswer{Problem-1c}
+       \subproblem If $k_{1} = k_{2} = k$, solve for $A$, $B$, and $C$. \addanswer{Problem-1d}
+       \subproblem If $k_{1} = k_{2} = k$, find the maximum amount of $B$ that is produced. \addanswer{Problem-1e}
+    \end{problems}
+    \problem Consider the dimerization to two monomers example from class
+    \[ A + A \stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C \]
+    \begin{problems}
+       \subproblem Derive the system of differential equations for the concentrations $A = A(t)$ and $C = C(t)$ with initial conditions $A(0) = A_{0}$ and $C(0) = 0$. \addanswer{Problem-2a}
+       \subproblem Find a conservation law that replaces the need for the $dC/dt$ equation and derive the equation for $A(t)$. \addanswer{Problem-2b}
+       \subproblem If $k_{1} = k_{2} = k$ and $A_{0} = 1$, find the steady-state values for $A(t)$ and $C(t)$, i.e. limits as $t \rightarrow \infty$. \addanswer{Problem-2c}
+    \end{problems}
+    \subproblem Consider the ODE:
+    \[ \frac{dx}{dt} = f(x) = \frac{2x^{2}}{1 + x^{4}} - x,\ \ x(0) \geq 0. \]
+    \begin{problems}
+       \subproblem Locate all the critical points $(x \geq 0)$. \addanswer{Problem-3a}
+       \subproblem Classify the stability of all the critical points. \addanswer{Problem-3b}
+       \subproblem Draw the phase line labeling the critical points and indicate the direction of flow of the solution. \addanswer{Problem-3c}
+    \end{problems}
+    \problem Consider the system
+    \begin{equation*}
+    \begin{aligned}
+       \frac{dx}{dt} &= 1 - y,\\
+       \frac{dy}{dt} &= x^{2} = y^{2}.
+    \end{aligned}
+    \end{equation*}
+    \begin{problems}
+       \subproblem Determine all critical points and nullclines. \addanswer{Problem-4a}
+       \subproblem Find the corresponding linear system near each critical point. \addanswer{Problem-4b}
+       \subproblem Find the eigenvalues and eigenvectors of each linear system.
+       What conclusions can you draw about the nonlinear system? \addanswer{Problem-4c}
+       \subproblem Generate a phase plane portrait for the nonlinear system.
+       Use Mathematica command \textit{StreamPlot} with $-2 < x < 2$ and $-1 < y < 2$. \addanswer{Problem-4d}
+       If your result in~\ref{prb:4c} consistent with the figure?
+    \end{problems}
+    \problem Consider the Michaelis-Menton reaction:
+    \[ S + E \stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C \stackrel{k_{2}}{\rightarrow} P + E \]
+    \begin{problems}
+       \subproblem Locate all the critical points $(x \geq 0)$. \addanswer{Problem-5a}
+       \subproblem Classify the stability of all the critical points. \addanswer{Problem-5b}
+       \subproblem Draw a phase line labeling the critical points and indicate the direction of flow of the solution. \addanswer{Problem-5c}
+    \end{problems}
 \end{problems}
 
 \end{document}
+
