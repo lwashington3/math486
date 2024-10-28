@@ -26,7 +26,7 @@
     \begin{problems}
        \subproblem Derive the system of differential equations for the concentrations $A = A(t)$ and $C = C(t)$ with initial conditions $A(0) = A_{0}$ and $C(0) = 0$. \addanswer{Problem-2a}
        \subproblem Find a conservation law that replaces the need for the $dC/dt$ equation and derive the equation for $A(t)$. \addanswer{Problem-2b}
-       \subproblem If $k_{1} = k_{2} = k$ and $A_{0} = 1$, find the steady-state values for $A(t)$ and $C(t)$, i.e. limits as $t \rightarrow \infty$. \addanswer{Problem-2c}
+       \subproblem If $k_{1} = k_{-1} = k$ and $A_{0} = 1$, find the steady-state values for $A(t)$ and $C(t)$, i.e. limits as $t \rightarrow \infty$. \addanswer{Problem-2c}
     \end{problems}
     \subproblem Consider the ODE:
     \[ \frac{dx}{dt} = f(x) = \frac{2x^{2}}{1 + x^{4}} - x,\ \ x(0) \geq 0. \]
@@ -53,10 +53,11 @@
     \end{problems}
     \problem Consider the Michaelis-Menton reaction:
     \[ S + E \stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C \stackrel{k_{2}}{\rightarrow} P + E \]
+    where all the rate constants are positive and the concentrations $S = $ substrate, $E = $ enzyme, $C = $ complex, and $P = $ product.
     \begin{problems}
-       \subproblem Locate all the critical points $(x \geq 0)$. \addanswer{Problem-5a}
-       \subproblem Classify the stability of all the critical points. \addanswer{Problem-5b}
-       \subproblem Draw a phase line labeling the critical points and indicate the direction of flow of the solution. \addanswer{Problem-5c}
+       \subproblem Using the system of equations for $S$ and $C$ derived in class, (i.e equations (3.51) and (3.52) on page 101 of Holmes' book), find the equations of the nullclines and locate all the critical points. \addanswer{Problem-5a}
+       \subproblem Test the stability of the critical points.
+       Find the linearized system, compute the solution, and explain your conclusion. \addanswer{Problem-5b}
     \end{problems}
 \end{problems}
 
