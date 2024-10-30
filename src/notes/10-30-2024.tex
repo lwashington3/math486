@@ -1,0 +1,233 @@
+%! Author = Len Washington III
+%! Date = 10/30/24
+
+% Preamble
+\documentclass[
+	date={October 30{,} 2024},
+	month={10},
+	day={30}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\begin{equation}
+	\frac{dC}{dt} = -\frac{V_{max}}{k_{m} + C}C,\ \ C(0^{+}) = C_{0}
+	\label{eq:star}
+\end{equation}
+
+Constructed an implicit solution to~\eqref{eq:star}
+
+\begin{equation}
+	\frac{1}{V_{max}}\left[ (C_{0} - C) + k_{m} \ln\frac{C_{0}}{C} \right]
+	\label{eq:diamond}
+\end{equation}
+\begin{equation*}
+\begin{aligned}
+	F(C) = t
+\end{aligned}
+\end{equation*}
+
+Given a time $t$ -- solve~\eqref{eq:diamond} for $C$ numerically (Newton's Method).
+
+BUT -- we would need to know $V_{max}$ and $k_{m}$.
+
+However, we were able to compute the half-life from~\eqref{eq:diamond} -- very useful!
+
+\[ t_{\frac{1}{2}} = \frac{k_{m}}{V_{max}} \ln 2 + \frac{C_{0}}{2V_{max}} \]
+where $\left[ \frac{V_{max}}{k_{m}} \right] = \frac{1}{T}$
+
+If we could find $F^{-1}$ then $F^{-1}(F(C)) = F^{-1}(t) \Rightarrow C = F^{-1}(t)$.
+
+\begin{equation}
+	\begin{aligned}
+		F(c) &= \frac{1}{V_{max}} \left[ (C_{0} - C) + k_{m} \ln \frac{C_{0}}C\right]\\
+		&= t
+	\end{aligned}
+	\label{eq:diamond-2}
+\end{equation}
+
+Get a better form of~\eqref{eq:diamond-2}.
+
+\begin{equation*}
+\begin{aligned}
+	\left[ (C_{0} - C) + k_{m} \ln \frac{C_{0}}{C}\right] &= V_{max}t\\
+	\frac{C_{0} - C}{k_{m}} + \ln \frac{C_{0}}{C} &= -\frac{V_{max}}{k_{M}}t\\
+	e^{\frac{C_{0} - C}{k_{m}} + \ln \frac{C_{0}}{C}} &= e^{-\frac{V_{max}}{k_{M}}t}\\
+	e^{\frac{C_{0} - C}{k_{m}}}e^{\ln \frac{C_{0}}{C}} &= e^{-\frac{V_{max}}{k_{M}}t}\\
+	e^{\frac{C_{0} - C}{k_{m}}} \frac{C_{0}}{C} &= e^{-\frac{V_{max}}{k_{M}}t}\\
+	e^{\frac{C_{0}}{k_{m}}} e^{-\frac{C}{k_{m}}} \frac{C_{0}}{C} &= e^{-\frac{V_{max}}{k_{M}}t}\\
+	e^{-\frac{C}{k_{m}}} \frac{1}{C} &= \frac{1}{C_{0}}e^{-\frac{V_{max}}{k_{M}}t}e^{\frac{-C_{0}}{k_{m}}}\\
+\end{aligned}
+\end{equation*}
+
+Does $G = xe^{x}$ have an inverse $G^{-1}$?
+
+\begin{equation*}
+\begin{aligned}
+	G(x) &= xe^{x}\\
+	G(0) &= 0\\
+	G'(x) &= e^{x} + xe^{x}\\
+	&= 0\\
+	G''(x) &= 2e^{x} + xe^{x}\\
+	G''(0) &= 2\\
+	>& 0 \mbox{  (concave up)}
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	G'(-1) &= -\frac{1}{e}\\
+	\lim_{x\rightarrow -\infty} xe^{x} &= 0
+\end{aligned}
+\end{equation*}
+
+On $-1 < x < \infty$, $G(x)$ is 1 to 1 $=\Rightarrow G^{-1}$ exists on $-\infty < x < -1$.
+
+Need a name for $G^{-1}$\\.
+Call $G^{-1}(x) =$ Lambert $W(x)$.
+
+\begin{equation*}
+\begin{aligned}
+	G(G^{-1}(x)) &= G(Lambert\ W(x))\\ &= x
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+	G(G^{-1}) &= W(x)e^{W(x)}\\
+	G(x) &= g(t)\\
+	&= xe^{x}\\
+	x &= G^{-1}(G)\\
+	&= G^{-1}(g(t))
+\end{aligned}
+\end{equation*}
+
+becomes $x = W\left( x_{0}e^{x_{0}}e^{-\frac{V_{max}}{k_{m}}}  \right)$ % TODO: Get the rest of this
+
+\begin{equation}
+	C(t) = k_{m}W\left( \frac{C_{0}}{k_{M}}e^{\frac{(C_{0} - V_{max})t}{k_{M}}} \right)
+	\label{eq:c-lambert}
+\end{equation}
+
+\section{Periodic Dosing with non-linear clearance}\label{sec:periodic-dosing-with-non-linear-clearance}
+Key: Each does of size $C_{0}$ is given at intervals $\tau$.
+Decay rate between doses depends on $C(t)$.
+This is different than the previous periodic dosing with 1st order clearance.
+
+Iterate:
+\begin{equation*}
+\begin{aligned}
+	v_{0} &= c_{0}\\
+	u_{1} &= k_{m}LambertW\left( \frac{C_{0}}{k_{M}}e^{\frac{C_{0} - V_{max}t}{k_{M}}} \right)\\
+	v_{1} &= u_{1} + c_{0}\\
+	u_{2} &= k_{m}LambertW\left( \frac{u_{1} +  C_{0}}{k_{M}}e^{\frac{u_{1} + C_{0} - V_{max}t}{k_{M}}} \right)\\
+\end{aligned}
+\end{equation*}
+
+Do the following limits exist?
+\begin{equation*}
+\begin{aligned}
+	v_{n} \rightarrow v_{\infty}\\
+	u_{n} \rightarrow u_{\infty}\\
+\end{aligned}
+\end{equation*}
+Are the limits in the therapeutic window?
+$MTL < u_{\infty} < v_{\infty} < MToL$
+
+\section{Cleanup topics}\label{sec:cleanup-topics}
+Enzyme with 2 sites.
+
+We expect that the reaction would be
+\begin{equation}
+	S + E \stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C_{1} + S \stackrel[k_{-2}]{k_{2}}{\rightleftarrows} C_{2} \rightarrow P + E
+	\label{eq:mm-2-site}
+\end{equation}
+
+Non-realistic reaction for simplicity!
+\[ 2S + E \stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C_{2} \stackrel{k_{p}}{\rightarrow} E + 2P \]
+
+\section{Epidemiology -- model of infectious diseases}\label{sec:epidemiology----model-of-infectious-diseases}
+Examples:
+\begin{itemize}
+	\item AIDS -- HIV
+	\item H1N1 flu -- Spanish flu (1918-1920)
+	\item Malaria
+	\item Zika
+	\item Hep-C
+	\item SARS
+	\item MERS
+	\item COVID-19
+\end{itemize}
+
+Who models:
+\begin{itemize}
+	\item CDC
+	\item WHO
+	\item John Hopkins University - COVID data site
+\end{itemize}
+
+\subsection{Types of Models}\label{subsec:types-of-models}
+\begin{enumerate}
+	\item Single - individual
+	\begin{itemize}
+		\item Viral load $\approx10^{12}$
+		\item Effectiveness of specific treatment
+	\end{itemize}
+	\item Spread in an entire population
+	\begin{itemize}
+		\item spread of epidemic
+	\end{itemize}
+	\item Agent based models - flow single individuals in (2) -- Zika in Miami
+	\begin{itemize}
+		\item Spread in localized area
+	\end{itemize}
+\end{enumerate}
+
+\section{Simple Epidemic Model}\label{sec:simple-epidemic-model}
+Population of fixed size $N$.
+
+Subdivide population into 2 groups.
+
+\begin{enumerate}
+	\item Susceptible $S(t)$.
+	\begin{itemize}
+		\item Health but can contract the disease.
+	\end{itemize}
+	\item Infectives -- infected individual $I(t)$
+	\begin{itemize}
+		\item Have disease and can spread it on contact
+	\end{itemize}
+\end{enumerate}
+
+Assumption: Well-mixed population.
+
+Any individual is equally likely to come in contact with any other individuals $\leftarrow$ cannot identify individuals with disease.
+
+\section{SIS model - compartment model}\label{sec:sis-model---compartment-model}
+
+Use modified ``Law of Mass Action''.
+Contact rate $\propto$ $SI$.
+$\beta$ = recovery rate, $\mu$ = recovery rate per individual
+$E[time\ sick] = \frac{1}{\mu}$.
+
+\begin{equation}
+	\begin{aligned}
+		\frac{dS}{dt} &= -\beta SI + \mu I \sep S(0) = N - 1\\
+		\frac{dI}{dt} &= \beta SI - \mu I \sep I(0) = 1
+	\end{aligned}
+	\label{eq:sis-model-law-of-mass-action}
+\end{equation}
+
+Look for conservation laws:
+\begin{equation*}
+\begin{aligned}
+	\frac{dS}{dt} + \frac{dI}{dt} &= 0\\
+	\frac{d}{dt} (S + I) &= 0\\
+	S(t) + I(t) &= S(0) + I(0)\\
+	I(t) &= N - 1 + 1 - S(t)\\
+	I(t) &= N - S(t)\\
+\end{aligned}
+\end{equation*}
+
+\end{document}

@@ -1,0 +1,225 @@
+%! Author = Len Washington III
+%! Date = 10/28/24
+
+% Preamble
+\documentclass[
+	date={October 28{,} 2024},
+	month={10},
+	day={28}
+]{math486notes}
+
+% Document
+\begin{document}
+
+\tableofcontents
+
+\begin{example}
+	\begin{minipage}[t]{0.475\textwidth}
+		\begin{equation*}
+			\begin{aligned}
+				\frac{dx}{dt} &= x^{3} - x\\
+				\frac{dy}{dt} &= -2y\\
+			\end{aligned}
+		\end{equation*}
+		\begin{equation*}
+			\begin{aligned}
+				\frac{dx}{dt} &= x^{3} - x\\
+				\frac{dx}{x^{3} - x} &= dt\\
+			\end{aligned}
+		\end{equation*}
+	\end{minipage}\hfill%
+	\begin{minipage}[t]{0.475\textwidth}
+		\begin{equation*}
+		\begin{aligned}
+			\frac{dy}{dt} &= -2y\\
+			\frac{dy}{-2y} &= dt\\
+			\int \frac{dy}{-2y} &= \int dt\\
+			-\frac{1}{2}\ln|y| &= t + C_{1}\\
+			\ln|y| &= -2t + C_{2}\\
+			y &= e^{-2t} + e^{C_{2}}\\
+			  &= e^{-2t} + C\\
+		\end{aligned}
+		\end{equation*}
+	\end{minipage}
+	\vspace{1.5em}\\
+	\begin{minipage}[t]{0.5\textwidth}
+		\begin{equation*}
+			\begin{aligned}
+				\frac{dx}{dt} &= 0\\
+				x^{3} - x &= 0\\
+				x(x^{2} - 1) &= 0\\
+			\end{aligned}
+		\end{equation*}
+		\begin{equation*}
+			\begin{aligned}
+				x^{2} - 1 &= 0 \sep x &= 0\\
+				x^{2} &= 1\\
+				x &= \pm 1 \sep x &= 0\\
+			\end{aligned}
+		\end{equation*}
+	\end{minipage}
+	\begin{minipage}[t]{0.5\textwidth}
+		\begin{equation*}
+			\begin{aligned}
+				\frac{dy}{dt} &= 0\\
+				-2y &= 0\\
+				y &= 0\\
+			\end{aligned}
+		\end{equation*}
+	\end{minipage}\\
+	Critical points: $(-1, 0)$, $(0, 0)$, $(1, 0)$.
+	The behavior around each crit point on the $x$-axis is positive, negative, positive, (checking the derivative of $\frac{dx}{dt}$.)
+	\begin{equation*}
+	\begin{aligned}
+		\frac{d\vec{u}}{dt} &= J_{ss}\vec{u}\\
+		J_{ss} &= \left[ \begin{array}{cc}
+			\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y}\\
+			\frac{\partial g}{\partial x} & \frac{\partial g}{\partial y}\\
+		\end{array} \right]\\
+		&= \left[ \begin{array}{cc}
+			3x^{2} - 1 & 0\\
+			0 & -2
+		\end{array} \right]\\
+		\frac{d\vec{u}}{dt} &= \left[ \begin{array}{cc}
+			3x^{2} - 1 & 0\\
+			0 & -2
+		\end{array} \right]\vec{u}\\
+		J(0, 0) &= \left[ \begin{array}{cc}
+			-1 & 0\\
+			0 & -1
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		\lambda_{1} &= -2 \sep \lambda_{2} &= -1\\
+		\lambda_{1} &< 0 \sep \lambda_{2} &< 0\\
+		&\Rightarrow stable \sep &\Rightarrow stable
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+	\begin{aligned}
+		J(-1, 0) &= \left[ \begin{array}{cc}
+			2 & 0\\
+			0 & -1
+		\end{array} \right]
+	\end{aligned}
+	\end{equation*}
+	\begin{equation*}
+		\begin{aligned}
+%			\lambda_{1} &= -2 \sep \lambda_{2} &= -1\\
+%			\lambda_{1} & 0 \sep \lambda_{2} &< 0\\
+%			&\Rightarrow stable \sep &\Rightarrow stable
+		\end{aligned}
+	\end{equation*}
+\end{example}
+
+\section{M-M reaction}\label{sec:m-m-reaction}
+Overall reaction: $S\rightarrow P$.
+
+Reaction steps:
+\begin{equation*}
+\begin{aligned}
+	S + E &\stackrel[k_{-1}]{k_{1}}{\rightleftarrows} C\\
+	C &\stackrel{k_{2}}{\rightarrow} E + P\\
+\end{aligned}
+\end{equation*}
+Kinetic equations:
+\begin{equation*}
+\begin{aligned}
+	\frac{ds}{dt} &= -k_{1}SE + k_{-1}C, \sep S(0) &= S_{0}\\
+	\frac{dE}{dt} &= -k_{1}SE + k_{-1}C + k_{2}C, \sep E(0) &= E_{0}\\
+	\frac{dC}{dt} &= k_{1}SE - k_{-1}C - k_{2}C, \sep C(0) &= 0\\
+	\frac{dP}{dt} &= k_{2}C, \sep P(0) &= 0\\
+\end{aligned}
+\end{equation*}
+
+Two conservation laws:
+\begin{equation*}
+\begin{aligned}
+	\frac{d}{dt} (S + C + P) &= 0\\
+	S + C + P &= S_{0}\\
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+	\frac{ds}{dt} &= -k_{1}E_{0}S + (k_{1})
+\end{aligned}
+\end{equation*}
+
+Stability Analysis -- HW
+$(0,0)$ is the only critical point.
+Conservation Law $\Rightarrow P = S_{0} \Rightarrow $ completion ($S + C + P = S_{0}$).
+
+New idea -- approximation:
+
+\section{Briggs-Haldane (1928)}\label{sec:briggs-haldane-(1928)}
+Assumption: substrate binds to ``all'' enzyme \emph{very quickly} and stays that way!
+
+Key: $E_{0} \ll S_{0}$
+\[ \frac{dC}{dt} \approx 0 \mbox{  (slow for most time)} \]
+
+i.e. set $\frac{dC}{dt} = 0$:
+\begin{equation*}
+\begin{aligned}
+	\frac{dS}{dt} &= -k_{1}E_{0}S + (k_{-1} + kS)C\\
+	0 &= k_{1}E_{0}S - (k_{2} + k_{-1} + k_{1})C\\
+\end{aligned}
+\end{equation*}
+Solve for $C$:
+\begin{equation*}
+\begin{aligned}
+	C &= \frac{k_{1}E_{0}S}{k_{2} + k_{-1} + k_{1}}
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+	\frac{ds}{dt} &= -k_{1}E_{0}S + (k_{1} + k_{1})S \left[ \frac{k_{1}E_{0}S}{} \right]
+\end{aligned}
+\end{equation*}
+
+\section{Quasi-Steady State Assumption}\label{sec:quasi-steady-state-assumption}
+Velocity of reaction:
+\begin{equation}
+	\begin{aligned}
+		\frac{dS}{dt} &= -\frac{v_{max}S}{k_{m} + S}\\
+		&= -Velocity
+	\end{aligned}
+	\label{eq:velocity-of-reaction}
+\end{equation}
+
+Conservation Law: $\frac{d}{dt}(S + C + P) = 0$
+
+if $\frac{dc}{dt} \approx 0 \Rightarrow \frac{dP}{dt} \approx -\frac{dS}{dt} = \frac{V_{max}s}{k_{m} + s}$
+
+Velocity of MM reaction: $Vel = \frac{dP}{dt}$
+
+Can we solve:
+\begin{equation*}
+\begin{aligned}
+	\frac{dS}{dt} &= -\frac{V_{max}S}{k_{m} + S} & S(0) = S_{0}
+\end{aligned}
+\end{equation*}
+First order, nonlinear, separable?
+\begin{equation*}
+\begin{aligned}
+	\frac{k_{m} + S}{s}ds &= -V_{max}dt\\
+	\int \frac{k_{m} + S}{S}ds &= -\int V_{max}dt\\
+	\int \left( k_{m}\frac{1}{S} + 1 \right) ds &= -\int V_{max}dt\\
+	k_{m}\ln|S| + S &= -V_{max}t + C\\
+\end{aligned}
+\end{equation*}
+Use $S(0) = S_{0}$
+\begin{equation*}
+\begin{aligned}
+	k_{m}\ln| S(0) | + S(0) &= -V_{max}(0) + C\\
+	k_{m}\ln| S_{0} | + S_{0} &= C\\
+	k_{m}\ln|S| + S &= -V_{max}t + k_{m}\ln| S_{0} | + S_{0}\\
+	k_{m}\ln|S| - k_{m}\ln| S_{0} | + S - S_{0} &= -V_{max}t\\
+	k_{m}\ln|\frac{S}{S_{0}}| + S - S_{0} &= -V_{max}t\\%(l^{3}/mt)
+\end{aligned}
+\end{equation*}
+
+\end{document}
