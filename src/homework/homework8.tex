@@ -1,0 +1,54 @@
+%! Author = Len Washington III
+%! Date = 10/23/24
+
+% Preamble
+\documentclass[
+    % author={}, % Remove the percentage sign and add your name within the brackets.
+    number={8},
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+The $LambertW(t)$ function arises in the pharmacokinetics problem as well as other applications in engineering and life sciences.
+$LambertW(t)$ is defined in Mathematica as ProductLog$(t)$.
+MatLab also has the $LambertW(t)$ built-in.
+Be sure to use the principal branch (branch 1 in class) of $xe^{x} = t$ where $x = LambertW(t)$ for problems 1 and 2 below.
+
+\begin{problems}
+    \problem
+    \begin{problems}
+        \subproblem Plot the function $xe^{x}$ and explain why it is not 1 to 1.
+        The principal branch is defined on $x > -1$. \addanswer{Problem-1a}
+        \subproblem Plot $LambertW(t)$ for $-\frac{1}{e} < t < 1$ and compare with the graph in~\ref{prb:1a}. \addanswer{Problem-1b}
+    \end{problems}
+    \problem \textbf{Nonlinear Pharmacokinetics}: In class we discussed a single compartment, nonlinear pharmacokinetics model where the clearance is based on the Michaelis-Menton model:
+    \begin{equation}
+    	\frac{dc}{dt} = -\frac{V_{m}c}{K_{m} + c},\ \ \ c(0^{+}) = c_{0}\\
+    	\label{eq:michaelis-menton}
+    \end{equation}
+    Here $c(t)$ and $c_{0}$ are concentrations and $V_{m}$ and $K_{m}$ are the Michaelis-Menton constants.
+    Following what was done in class:
+    \begin{problems}
+        \subproblem Graph the explicit solution of~\eqref{eq:michaelis-menton} that was derived in class (Day 19 page 5) for $t$ from 0 to 10 hours.
+        Use the parameter values: $c_{0} = 4$, $K_{m} = 1.2$, and $V_{m} = 1$. \addanswer{Problem-2a}
+        \subproblem Derive the $c(t)$ using a linear model with first order clearance and clearance constant $k$.\addanswer{Problem-2b}
+        \subproblem Graph the solution of the linear model with $c_{0} = 4$, $k = \frac{1}{1.2}$ on the same axes with the graph in~\ref{prb:2a}.
+        How do they compare? \addanswer{Problem-2c}
+    \end{problems}
+    \problem Review the notes for the nonlinear model with multiple doses of size $c_{0}$, see Day 19 page 5a.
+    \begin{problems}
+        \subproblem Using the notes, derive a difference equation relating $c_{n+1}$ to $c_{n}$.
+        Remember $c_{n}$ is the value just after the $n$th dose.
+        Each dose is size $c_{0}$. \addanswer{Problem-3a}
+        \subproblem Find an explicit formula for the rest or critical value, i.e. $\lim_{n\rightarrow \infty} c_{n}$ using the parameters given in class.
+        This is the maximum concentration, which must be below the minimum toxic level. \addanswer{Problem-3b}
+        \subproblem Graph the max and min sequences for $c_{0} = 4$, $K_{m} = 1.2$, $V_{m} = 1$ and $T = 6$.
+        Does $c_{n}$ approach the critical value in~\ref{prb:3b}. \addanswer{Problem-3c}
+    \end{problems}
+\end{problems}
+
+\end{document}
+
