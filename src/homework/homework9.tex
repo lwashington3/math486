@@ -1,0 +1,184 @@
+%! Author = Len Washington III
+%! Date = 11/13/24
+
+% Preamble
+\documentclass[
+    % author={}, % Remove the percentage sign and add your name within the brackets.
+    number={9},
+    title={Epidemics}
+]{math486homework}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\begin{problems}
+    \problem An SIR model with vital statistics was described in class, i.e.\ with births and deaths.
+    The population size is fixed to be $N$ and the relevant system of equations is:
+    \begin{equation}
+    	\begin{aligned}
+            \frac{dS}{dt} &= B - \beta \frac{I}{N} S - dS,\\
+            \frac{dI}{dt} &= \beta \frac{I}{N}S - \mu I - dI,\\
+            \frac{dR}{dt} &= \mu I - dR.
+        \end{aligned}
+    	\label{eq:sir-1}
+    \end{equation}
+    \begin{problems}
+        \subproblem Since the population is to be fixed, define $B = dN$ and introduce fractions - you can re-use the upper case letters if you choose but remember they are now fractions. \addanswer{Problem-1a}
+        \subproblem Find all the critical points, denoted by $S^{*}$ and $I^{*}$, using the scaled $\frac{dS}{dt}$ and $\frac{dI}{dt}$ equations. \addanswer{Problem-1b}
+        \subproblem Study the stability of the Disease-Free Equilibrium (DFE) and identify the reproduction number $R_{0}$ from its eigenvalues. \addanswer{Problem-1c}
+        \subproblem Write all the critical points in terms of $R_{0}$. \addanswer{Problem-1d}
+        \subproblem Give an explicit condition to require the endemic critical point $I^{*}$ be in the domain. \addanswer{Problem-1e}
+        \subproblem Test the stability of the endemic critical point. \addanswer{Problem-1f}
+    \end{problems}
+    \problem We discussed an SIS model in class with a fixed population size.
+    If we assume births and deaths can occur and the population is not constant, then the model becomes
+    \begin{equation}
+        \begin{aligned}
+            \frac{dS}{dt} &= bN - \beta \frac{I}{N} S - dS,\\
+            \frac{dI}{dt} &= \beta \frac{I}{N}S - \mu I - dI,\\
+        \end{aligned}
+        \label{eq:sir-2}
+    \end{equation}
+    This differs from Problem 1 since the birth rate $b$ is not equal to the death rate $d$.
+    \begin{problems}
+        \subproblem Define $N(t) = S(t) + I(t)$ and derive a formula for $N(t)$.
+        State conditions for population growth and decline. \addanswer{Problem-2a}
+        \subproblem Introduce fractions $x(t) = \frac{S(t)}{N(t)}$ and $y(t) = \frac{I(t)}{N(t)}$ into~\eqref{eq:sir-2} and derive a logistic equation for $y(t)$.
+        Note: $x(t) + y(t) = 1$. \addanswer{Problem-2b}
+    \end{problems}
+    \problem The concentration $y(t)$ in the second compartment (plasma) of a two compartment model has a functional form as the sum of two exponentials
+    \begin{equation}
+    	y(t) = b(1)e^{b(2)t} + b(3)e^{b(4)t},\ \ t \geq 0
+    	\label{eq:3}
+    \end{equation}
+    where $b(j)$, $j=1, 2, 3, 4$ are unknown parameters, which you are to estimate.
+    The experimental data is given in the data set (column 1=time and column 2 = $y$) in Table~\ref{tab:prb-3-data}.
+    \begin{problems}
+        \subproblem Use exponential peeling to approximate $b(j)$, $j=1, 2, 3, 4$. \addanswer{Problem-3a}
+        \subproblem Graph the data points and~\eqref{eq:3} with your values $b(j)$, $j=1, 2, 3, 4$ on the same axes.
+        Is the fit reasonable.
+        Compute the $SSE$ using~\eqref{eq:sse}. \addanswer{Problem-3b}
+        \subproblem Use an approximation package in Matlab, Mathematica, etc. to find the unknown parameters by minimizing the sum of the squares of the error (SSE) for the model in~\ref{prb:3a}, i.e. minimize
+        \begin{equation}
+        	SSE = \sum_{i=1}^{N} \left( y(t_{i}) - datapoint_{i} \right)^{2}
+        	\label{eq:sse}
+        \end{equation}
+        Again graph the data and your approximate~\eqref{eq:3}.
+        How does this compare with the exponential peeling result. \addanswer{Problem-3c}
+    \end{problems}
+\end{problems}
+
+\begin{table}[H]
+	\centering
+	\caption{Data for Problem 3.}
+	\label{tab:prb-3-data}
+	\begin{tabular}{c r}
+        0.00 & 10.18066949\\
+        0.05 & 9.68532650\\
+        0.10 & 9.57756420\\
+        0.15 & 8.97698692\\
+        0.20 & 9.26775331\\
+        0.25 & 8.57867356\\
+        0.30 & 8.41627338\\
+        0.35 & 8.52557991\\
+        0.40 & 8.14847057\\
+        0.45 & 8.11814474\\
+        0.50 & 7.73210163\\
+        0.55 & 7.49610525\\
+        0.60 & 7.21145539\\
+        0.65 & 7.38406612\\
+        0.70 & 7.10966780\\
+        0.75 & 6.97690056\\
+        0.80 & 6.91499709\\
+        0.85 & 6.52208220\\
+        0.90 & 6.51737682\\
+        0.95 & 6.60428743\\
+        1.00 & 6.45108555\\
+        1.05 & 6.08735980\\
+        1.10 & 5.98447390\\
+        1.15 & 5.86766072\\
+        1.20 & 5.73590517\\
+        1.25 & 5.81354866\\
+        1.30 & 5.81578848\\
+        1.35 & 5.75317737\\
+        1.40 & 5.59196586\\
+        1.45 & 5.34741359\\
+        1.50 & 5.46917538\\
+        1.55 & 5.20361472\\
+        1.60 & 5.13529086\\
+        1.65 & 5.05361424\\
+        1.70 & 5.00315004\\
+        1.75 & 4.94850650\\
+        1.80 & 4.89647212\\
+        1.85 & 4.87856994\\
+        1.90 & 4.81989700\\
+        1.95 & 4.73013991\\
+        2.00 & 4.68719730\\
+        2.05 & 4.84664770\\
+        2.10 & 4.73156881\\
+        2.15 & 4.63313463\\
+        2.20 & 4.46573500\\
+        2.25 & 4.42847230\\
+        2.30 & 4.34159682\\
+        2.35 & 4.55801088\\
+        2.40 & 4.45020533\\
+        2.45 & 4.36256710\\
+        2.50 & 4.24821319\\
+        2.55 & 4.16533611\\
+        2.60 & 4.26286833\\
+        2.65 & 4.33237268\\
+        2.70 & 4.05711806\\
+        2.75 & 4.04768959\\
+        2.80 & 4.05347346\\
+        2.85 & 3.92854148\\
+        2.90 & 4.06819262\\
+        2.95 & 3.95713209\\
+        3.00 & 4.08663267\\
+        3.05 & 3.89555427\\
+        3.10 & 3.92536072\\
+        3.15 & 3.76973818\\
+        3.20 & 3.80270701\\
+        3.25 & 3.71621507\\
+        3.30 & 3.84731361\\
+        3.35 & 3.84958374\\
+        3.40 & 3.68680050\\
+        3.45 & 3.74788149\\
+        3.50 & 3.62148035\\
+        3.55 & 3.65731511\\
+        3.60 & 3.70935268\\
+        3.65 & 3.62551283\\
+        3.70 & 3.53604955\\
+        3.75 & 3.50408583\\
+        3.80 & 3.51944267\\
+        3.85 & 3.48965320\\
+        3.90 & 3.45223021\\
+        3.95 & 3.47881770\\
+        4.00 & 3.50163731\\
+        4.05 & 3.40387110\\
+        4.10 & 3.38429579\\
+        4.15 & 3.29175463\\
+        4.20 & 3.24835181\\
+        4.25 & 3.29111291\\
+        4.30 & 3.27797509\\
+        4.35 & 3.33636904\\
+        4.40 & 3.38653147\\
+        4.45 & 3.36202469\\
+        4.50 & 3.23412350\\
+        4.55 & 3.16648748\\
+        4.60 & 3.26591390\\
+        4.65 & 3.24636381\\
+        4.70 & 3.22389575\\
+        4.75 & 3.20646282\\
+        4.80 & 3.04858312\\
+        4.85 & 3.15725052\\
+        4.90 & 3.09239149\\
+        4.95 & 3.02114805\\
+        5.00 & 2.98016748\\
+	\end{tabular}
+\end{table}
+
+
+\end{document}
+
